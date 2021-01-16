@@ -36,7 +36,7 @@ const MovieType = new GraphQLObjectType({
         director: {
             type: DirectorType,
             resolve: ({ directorId }) => getCollectionItemById(directors, directorId),
-        }
+        },
     }),
 });
 
