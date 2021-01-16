@@ -4,15 +4,20 @@ const {
     GraphQLSchema,
     GraphQLID,
     GraphQLInt,
+    GraphQLList,
 } = require('graphql');
 
-const { getArrayItemById } = require('../utils/helpers');
+const { getCollectionItemById, getCollectionItemsByDirectorId } = require('../utils/helpers');
 
 const movies = [
     { id: '1', name: 'Pulp Fiction', genre: 'Crime', directorId: '1' },
     { id: '2', name: '1984', genre: 'Sci-Fi', directorId: '2' },
     { id: '3', name: 'V for vendetta', genre: 'Sci-Fi-Thriller', directorId: '3' },
     { id: '4', name: 'Snatch', genre: 'Crime-Comedy', directorId: '4' },
+    { id: '5', name: 'Reservoir Dogs', genre: 'Crime', directorId: '1' },
+    { id: '6', name: 'The Hateful Eight', genre: 'Crime', directorId: '1' },
+    { id: '7', name: 'Inglourious Basterds', genre: 'Crime', directorId: '1' },
+    { id: '7', name: 'Lock, Stock and Two Smoking Barrels', genre: 'Crime-Comedy', directorId: '4' },
 ];
 
 const directors = [
@@ -30,7 +35,7 @@ const MovieType = new GraphQLObjectType({
         genre: { type: GraphQLString },
         director: {
             type: DirectorType,
-            resolve: ({ directorId }) => getArrayItemById(directors, directorId),
+            resolve: ({ directorId }) => getCollectionItemById(directors, directorId),
         }
     }),
 });
@@ -41,6 +46,10 @@ const DirectorType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         age: { type: GraphQLInt },
+        movies: {
+            type: new GraphQLList(MovieType),
+            resolve: ({ id }) => getCollectionItemsByDirectorId(movies, id),
+        },
     }),
 });
 
@@ -50,12 +59,20 @@ const Query = new GraphQLObjectType({
         movie: {
             type: MovieType,
             args: { id: { type: GraphQLID } },
-            resolve: (_, { id }) => getArrayItemById(movies, id),
+            resolve: (_, { id }) => getCollectionItemById(movies, id),
         },
         director: {
             type: DirectorType,
             args: { id: { type: GraphQLID } },
-            resolve: (_, { id }) => getArrayItemById(directors, id),
+            resolve: (_, { id }) => getCollectionItemById(directors, id),
+        },
+        movies: {
+            type: new GraphQLList(MovieType),
+            resolve: () => movies,
+        },
+        directors: {
+            type: new GraphQLList(DirectorType),
+            resolve: () => directors,
         },
     },
 });
