@@ -30,7 +30,7 @@ const MovieType = new GraphQLObjectType({
         genre: { type: GraphQLString },
         director: {
             type: DirectorType,
-            resolve: ({ id }) => getArrayItemById(directors, id),
+            resolve: ({ directorId }) => getArrayItemById(directors, directorId),
         }
     }),
 });
