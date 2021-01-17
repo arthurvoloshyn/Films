@@ -8,13 +8,13 @@ const schema = require('../schema/schema');
 
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
-const { SERVER_PORT, DB_NAME, DB_USER_NAME, DB_USER_PASSWORD } = process.env;
+const { SERVER_PORT, DB_NAME, DB_USER_NAME, DB_USER_PASSWORD, DB_CLUSTER } = process.env;
 
 const app = express();
 const PORT = SERVER_PORT || 3005;
 
 mongooseConnect(
-    `mongodb+srv://${DB_USER_NAME}:${DB_USER_PASSWORD}@filmscluster.qlx4n.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`,
+    `mongodb+srv://${DB_USER_NAME}:${DB_USER_PASSWORD}@${DB_CLUSTER}.qlx4n.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true },
 );
 
