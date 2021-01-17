@@ -9,6 +9,24 @@ const {
 
 const { getCollectionItemById, getCollectionItemsByDirectorId } = require('../utils/helpers');
 
+const directorsJson = [
+    { "name": "Quentin Tarantino", "age": 57 }, // 60048d9e0af866c3123b6f3a
+    { "name": "Michael Radford", "age": 74 }, // 60048ea50af866c3123b6f3b
+    { "name": "James McTeigue", "age": 53 }, // 60048edc0af866c3123b6f3c
+    { "name": "Guy Ritchie", "age": 52 }, // 60048f0a0af866c3123b6f3d
+];
+
+const moviesJson = [
+    { "name": "Pulp Fiction", "genre": "Crime", "directorId": "60048d9e0af866c3123b6f3a" },
+    { "name": "1984", "genre": "Sci-Fi", "directorId": "60048ea50af866c3123b6f3b" },
+    { "name": "V for vendetta", "genre": "Sci-Fi-Thriller", "directorId": "60048edc0af866c3123b6f3c" },
+    { "name": "Snatch", "genre": "Crime-Comedy", "directorId": "60048f0a0af866c3123b6f3d" },
+    { "name": "Reservoir Dogs", "genre": "Crime", "directorId": "60048d9e0af866c3123b6f3a" },
+    { "name": "The Hateful Eight", "genre": "Crime", "directorId": "60048d9e0af866c3123b6f3a" },
+    { "name": "Inglourious Basterds", "genre": "Crime", "directorId": "60048d9e0af866c3123b6f3a" },
+    { "name": "Lock, Stock and Two Smoking Barrels", "genre": "Crime-Comedy", "directorId": "60048f0a0af866c3123b6f3d" },
+];
+
 const movies = [
     { id: '1', name: 'Pulp Fiction', genre: 'Crime', directorId: '1' },
     { id: '2', name: '1984', genre: 'Sci-Fi', directorId: '2' },
