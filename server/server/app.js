@@ -15,7 +15,7 @@ const PORT = SERVER_PORT || 3005;
 
 mongooseConnect(
     `mongodb+srv://${DB_USER_NAME}:${DB_USER_PASSWORD}@${DB_CLUSTER}.qlx4n.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`,
-    { useNewUrlParser: true, useUnifiedTopology: true },
+    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
 );
 
 app.use('/graphql', graphqlHTTP({
