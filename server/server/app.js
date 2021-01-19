@@ -4,17 +4,18 @@ const dotenv = require('dotenv');
 const { graphqlHTTP } = require('express-graphql');
 const { connect: mongooseConnect, connection: dbConnection } = require('mongoose');
 
+const { retryWritesParam, retryWritesValue, writeParam, writeValue } = require('../constants/dbPaths');
 const schema = require('../schema/schema');
 
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
-const { SERVER_PORT, DB_NAME, DB_USER_NAME, DB_USER_PASSWORD, DB_CLUSTER } = process.env;
+const { SERVER_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_CLUSTER } = process.env;
 
 const app = express();
 const PORT = SERVER_PORT || 3005;
 
 mongooseConnect(
-    `mongodb+srv://${DB_USER_NAME}:${DB_USER_PASSWORD}@${DB_CLUSTER}.qlx4n.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`,
+    `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_CLUSTER}.mongodb.net/${DB_NAME}?${retryWritesParam}${retryWritesValue}&${writeParam}${writeValue}`,
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
 );
 
