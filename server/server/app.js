@@ -7,7 +7,7 @@ const { connect: mongooseConnect, connection: dbConnection } = require('mongoose
 const { retryWritesParam, retryWritesValue, writeParam, writeValue } = require('../constants/dbPaths');
 const schema = require('../schema/schema');
 
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const { SERVER_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_CLUSTER } = process.env;
 
