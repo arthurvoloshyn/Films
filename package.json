@@ -8,8 +8,8 @@
     "server-install": "npm install --prefix server",
     "client": "npm start --prefix application",
     "server": "npm run dev --prefix server",
-    "install": "concurrently \"npm run client-install\"  \"npm run server-install\"",
-    "dev": "concurrently \"npm run server\"  \"npm run client\""
+    "install": "concurrently \"npm run client-install\" \"npm run server-install\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "MIT",
