@@ -10,13 +10,13 @@ const schema = require('../schema/schema');
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-const { SERVER_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_CLUSTER, GRAPHQL_REQUEST } = process.env;
+const { SERVER_PORT, DB_NAME, DB_USER, DB_PASS, DB_CLUSTER, GRAPHQL_REQUEST } = process.env;
 
 const app = express();
 const PORT = SERVER_PORT || 3005;
 
 mongooseConnect(
-    `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_CLUSTER}.mongodb.net/${DB_NAME}?${retryWritesParam}${retryWritesValue}&${writeParam}${writeValue}`,
+    `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_CLUSTER}.mongodb.net/${DB_NAME}?${retryWritesParam}${retryWritesValue}&${writeParam}${writeValue}`,
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
 );
 
