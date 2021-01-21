@@ -4,6 +4,7 @@ const {
     GraphQLSchema,
     GraphQLID,
     GraphQLInt,
+    GraphQLBoolean,
     GraphQLList,
     GraphQLNonNull,
 } = require('graphql');
@@ -17,6 +18,8 @@ const MovieType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: new GraphQLNonNull(GraphQLString) },
         genre: { type: new GraphQLNonNull(GraphQLString) },
+        watched: { type: new GraphQLNonNull(GraphQLBoolean) },
+        rate: { type: GraphQLInt },
         director: {
             type: DirectorType,
             resolve: ({ directorId }) => Directors.findById(directorId),
@@ -56,10 +59,12 @@ const Mutation = new GraphQLObjectType({
           args: {
             name: { type: new GraphQLNonNull(GraphQLString) },
             genre: { type: new GraphQLNonNull(GraphQLString) },
+            watched: { type: new GraphQLNonNull(GraphQLBoolean) },
+            rate: { type: GraphQLInt },
             directorId: { type: GraphQLID },
           },
-          resolve: (_, { name, genre, directorId }) => {
-              const movie = new Movies({ name, genre, directorId });
+          resolve: (_, { name, genre, directorId, watched, rate }) => {
+              const movie = new Movies({ name, genre, directorId, watched, rate });
               return movie.save();
           },
         },
@@ -92,11 +97,13 @@ const Mutation = new GraphQLObjectType({
                 id: { type: GraphQLID },
                 name: { type: new GraphQLNonNull(GraphQLString) },
                 genre: { type: new GraphQLNonNull(GraphQLString) },
+                watched: { type: new GraphQLNonNull(GraphQLBoolean) },
+                rate: { type: GraphQLInt },
                 directorId: { type: GraphQLID },
             },
-            resolve: (_, { id, name, genre, directorId }) => Movies.findByIdAndUpdate(
+            resolve: (_, { id, name, genre, directorId, watched, rate }) => Movies.findByIdAndUpdate(
                 id,
-                { $set: { name, genre, directorId } },
+                { $set: { name, genre, directorId, watched, rate } },
                 { new: true },
             ),
         },
