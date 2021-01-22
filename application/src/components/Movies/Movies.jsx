@@ -19,8 +19,8 @@ class Movies extends React.Component {
 
   handleClickOpen = (data = {}) => {
     this.setState({
-      open: true,
       ...data,
+      open: true,
       directorId: data.director ? data.director.id : '',
     });
   };

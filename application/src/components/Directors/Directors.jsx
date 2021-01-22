@@ -17,8 +17,8 @@ class Directors extends React.Component {
 
   handleClickOpen = (data) => {
     this.setState({
-      open: true,
       ...data,
+      open: true,
     });
   };
 
