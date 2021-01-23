@@ -55,4 +55,4 @@ class DirectorsForm extends React.Component {
   }
 };
 
-  export default withHocs(DirectorsForm);
+export default withHocs(DirectorsForm);
