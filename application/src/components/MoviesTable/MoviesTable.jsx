@@ -83,7 +83,7 @@ class MoviesTable extends React.Component {
                         <IconButton color="inherit" onClick={(e) => this.handleClick(e, movie)}>
                           <MoreIcon />
                         </IconButton>
-                        <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose} >
+                        <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
                           <MenuItem onClick={this.handleEdit}><CreateIcon /> Edit</MenuItem>
                           <MenuItem onClick={this.handleDelete}><DeleteIcon/> Delete</MenuItem>
                         </Menu>
