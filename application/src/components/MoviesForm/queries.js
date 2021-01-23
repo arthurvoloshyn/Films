@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
-export const directorsQuery = gql`
-    query directorsQuery {
+export const directorsNameQuery = gql`
+    query directorsNameQuery {
         directors {
             id
             name
