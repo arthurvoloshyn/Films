@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo';
 import { directorsQuery } from '../DirectorsTable/queries';
 import { moviesQuery } from '../MoviesTable/queries';
 import { addMovieMutation, updateMovieMutation } from './mutations';
-import { directorsNameQuery } from './queries';
+import { directorsQuery as directorsNameQuery } from './queries';
 
 import { styles } from './styles';
 
