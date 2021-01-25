@@ -10,9 +10,12 @@ import withHocs from './DirectorsFormHoc';
 class DirectorsForm extends React.Component {
   handleClose = () => { this.props.onClose(); };
 
-  handleSave = () => {
+  handleSave = e => {
+    e.preventDefault();
+
     const { selectedValue, onClose, addDirector, updateDirector } = this.props;
     const { id, name, age } = selectedValue;
+
     id ? updateDirector({ id, name, age: +age }) : addDirector({ name, age: +age });
     onClose();
   };
@@ -24,7 +27,7 @@ class DirectorsForm extends React.Component {
     return (
       <Dialog onClose={this.handleClose} open={open} aria-labelledby="simple-dialog-title">
         <DialogTitle className={classes.title} id="simple-dialog-title">Director information</DialogTitle>
-        <form className={classes.container} noValidate autoComplete="off">
+        <form onSubmit={this.handleSave} className={classes.container} autoComplete="off">
           <TextField
             id="outlined-name"
             label="Name"
@@ -33,6 +36,7 @@ class DirectorsForm extends React.Component {
             onChange={handleChange('name')}
             margin="normal"
             variant="outlined"
+            required
           />
           <TextField
             id="outlined-rate"
@@ -43,9 +47,10 @@ class DirectorsForm extends React.Component {
             type="number"
             margin="normal"
             variant="outlined"
+            required
           />
           <div className={classes.wrapper}>
-            <Button onClick={this.handleSave} variant="contained" color="primary" className={classes.button}>
+            <Button type="submit" variant="contained" color="primary" className={classes.button}>
               <SaveIcon /> Save
             </Button>
           </div>
