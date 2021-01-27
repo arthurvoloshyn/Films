@@ -1,19 +1,77 @@
 {
+  "homepage": "",
   "name": "films",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "Simple React Films Application",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArturW1998/Films"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "graphql",
+    "node",
+    "nodejs",
+    "express",
+    "mongoose",
+    "apollo"
+  ],
   "scripts": {
     "client-install": "npm install --prefix application",
     "server-install": "npm install --prefix server",
     "client": "npm start --prefix application",
     "server": "npm run dev --prefix server",
     "install": "concurrently \"npm run client-install\" \"npm run server-install\"",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "lint:styles": "stylelint --syntax css application/**/*.css",
+    "lint": "eslint --ext .js,.jsx server application",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:styles:fix": "npm run lint:styles -- --fix",
+    "format": "prettier \"{application,server}/**/*.{js,jsx,yml,yaml,ts,tsx,md,graphql,mdx}\" --write",
+    "format:styles": "prettier \"application/**/*.css\" --parser css --write",
+    "validate": "npm run lint && npm run lint:styles",
+    "precommit": "lint-staged"
   },
-  "author": "",
+  "author": "Artur Voloshyn (https://github.com/arturw1998)",
   "license": "MIT",
   "dependencies": {
     "concurrently": "^5.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-flowtype": "^3.13.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "stylelint": "^12.0.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-standard": "^19.0.0",
+    "stylelint-order": "^3.1.1",
+    "stylelint-prettier": "^1.1.2",
+    "typescript": "^4.1.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
   }
 }
