@@ -5,7 +5,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import withHocs from './DirectorsSearchHoc';
 
 class DirectorsSearch extends React.Component {
-
   handleKeyPress = e => {
     const { handleSearch } = this.props;
     handleSearch(e);
@@ -32,6 +31,6 @@ class DirectorsSearch extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default withHocs(DirectorsSearch);

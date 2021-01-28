@@ -11,12 +11,11 @@ import BlockIcon from '@material-ui/icons/Block';
 import withHocs from './DirectorsDialogHoc';
 
 class DirectorsDialog extends React.Component {
-
   handleDelete = () => {
     const { id, handleClose, deleteDirector } = this.props;
     deleteDirector(id);
     handleClose();
-  }
+  };
 
   render() {
     const { open, handleClose } = this.props;
@@ -28,7 +27,9 @@ class DirectorsDialog extends React.Component {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Are you sire that you want to delete element?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {'Are you sire that you want to delete element?'}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             If you click 'Confirm' this element will be removed from data base.

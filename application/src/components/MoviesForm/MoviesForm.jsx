@@ -32,13 +32,23 @@ class MoviesForm extends React.Component {
   };
 
   render() {
-    const { data = {}, classes, open, handleChange, handleSelectChange, handleCheckboxChange, selectedValue = {} } = this.props;
+    const {
+      data = {},
+      classes,
+      open,
+      handleChange,
+      handleSelectChange,
+      handleCheckboxChange,
+      selectedValue = {},
+    } = this.props;
     const { name, genre, rate, directorId, watched } = selectedValue;
     const { directors = [] } = data;
 
     return (
       <Dialog onClose={this.handleClose} open={open} aria-labelledby="simple-dialog-title">
-        <DialogTitle className={classes.title} id="simple-dialog-title">Movie information</DialogTitle>
+        <DialogTitle className={classes.title} id="simple-dialog-title">
+          Movie information
+        </DialogTitle>
         <form onSubmit={this.handleSave} className={classes.container} autoComplete="off">
           <TextField
             id="outlined-name"
@@ -72,7 +82,9 @@ class MoviesForm extends React.Component {
           />
           <FormControl variant="outlined" className={classes.formControlSelect} required>
             <InputLabel
-              ref={ref => { this.InputLabelRef = ref; }}
+              ref={ref => {
+                this.InputLabelRef = ref;
+              }}
               htmlFor="outlined-age-simple"
             >
               Director
@@ -82,12 +94,22 @@ class MoviesForm extends React.Component {
               onChange={handleSelectChange}
               input={<OutlinedInput name="directorId" id="outlined-director" labelWidth={70} />}
             >
-            {directors.map(director => <MenuItem key={director.id} value={director.id}>{director.name}</MenuItem>)}
+              {directors.map(director => (
+                <MenuItem key={director.id} value={director.id}>
+                  {director.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <div className={classes.wrapper}>
             <FormControlLabel
-              control={<Checkbox checked={watched} onChange={handleCheckboxChange('watched')} value="watched" />}
+              control={
+                <Checkbox
+                  checked={watched}
+                  onChange={handleCheckboxChange('watched')}
+                  value="watched"
+                />
+              }
               label="Watched movie"
             />
             <Button type="submit" variant="contained" color="primary" className={classes.button}>
@@ -98,6 +120,6 @@ class MoviesForm extends React.Component {
       </Dialog>
     );
   }
-};
+}
 
-  export default withHocs(MoviesForm);
+export default withHocs(MoviesForm);

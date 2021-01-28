@@ -8,7 +8,9 @@ import SaveIcon from '@material-ui/icons/Save';
 import withHocs from './DirectorsFormHoc';
 
 class DirectorsForm extends React.Component {
-  handleClose = () => { this.props.onClose(); };
+  handleClose = () => {
+    this.props.onClose();
+  };
 
   handleSave = e => {
     e.preventDefault();
@@ -26,7 +28,9 @@ class DirectorsForm extends React.Component {
 
     return (
       <Dialog onClose={this.handleClose} open={open} aria-labelledby="simple-dialog-title">
-        <DialogTitle className={classes.title} id="simple-dialog-title">Director information</DialogTitle>
+        <DialogTitle className={classes.title} id="simple-dialog-title">
+          Director information
+        </DialogTitle>
         <form onSubmit={this.handleSave} className={classes.container} autoComplete="off">
           <TextField
             id="outlined-name"
@@ -58,6 +62,6 @@ class DirectorsForm extends React.Component {
       </Dialog>
     );
   }
-};
+}
 
 export default withHocs(DirectorsForm);

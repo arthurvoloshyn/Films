@@ -22,5 +22,5 @@ export const styles = theme => ({
   },
   button: {
     minWidth: 100,
-  }
+  },
 });

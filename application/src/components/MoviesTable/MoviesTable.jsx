@@ -25,7 +25,9 @@ class MoviesTable extends React.Component {
     name: '',
   };
 
-  handleChange = name => ({ target: { value } }) => { this.setState({ [name]: value }) };
+  handleChange = name => ({ target: { value } }) => {
+    this.setState({ [name]: value });
+  };
 
   handleSearch = ({ key }) => {
     const { data } = this.props;
@@ -38,8 +40,12 @@ class MoviesTable extends React.Component {
       });
   };
 
-  handleDialogOpen = () => { this.setState({ openDialog: true }); };
-  handleDialogClose = () => { this.setState({ openDialog: false }); };
+  handleDialogOpen = () => {
+    this.setState({ openDialog: true });
+  };
+  handleDialogClose = () => {
+    this.setState({ openDialog: false });
+  };
 
   handleClick = ({ currentTarget }, data) => {
     this.setState({
@@ -48,7 +54,9 @@ class MoviesTable extends React.Component {
     });
   };
 
-  handleClose = () => { this.setState({ anchorEl: null }); };
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
 
   handleEdit = () => {
     this.props.onOpen(this.state.data);
@@ -70,7 +78,11 @@ class MoviesTable extends React.Component {
     return (
       <>
         <Paper>
-          <MoviesSearch name={name} handleChange={this.handleChange} handleSearch={this.handleSearch} />
+          <MoviesSearch
+            name={name}
+            handleChange={this.handleChange}
+            handleSearch={this.handleSearch}
+          />
         </Paper>
         <MoviesDialog open={openDialog} handleClose={this.handleDialogClose} id={activeElem.id} />
         <Paper className={classes.root}>
@@ -89,7 +101,9 @@ class MoviesTable extends React.Component {
               {movies.map(movie => {
                 return (
                   <TableRow key={movie.id}>
-                    <TableCell component="th" scope="row">{movie.name}</TableCell>
+                    <TableCell component="th" scope="row">
+                      {movie.name}
+                    </TableCell>
                     <TableCell>{movie.genre}</TableCell>
                     <TableCell align="right">{movie.rate}</TableCell>
                     <TableCell>{movie.director?.name || 'No director'}</TableCell>
@@ -98,12 +112,21 @@ class MoviesTable extends React.Component {
                     </TableCell>
                     <TableCell align="right">
                       <>
-                        <IconButton color="inherit" onClick={(e) => this.handleClick(e, movie)}>
+                        <IconButton color="inherit" onClick={e => this.handleClick(e, movie)}>
                           <MoreIcon />
                         </IconButton>
-                        <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
-                          <MenuItem onClick={this.handleEdit}><CreateIcon /> Edit</MenuItem>
-                          <MenuItem onClick={this.handleDelete}><DeleteIcon/> Delete</MenuItem>
+                        <Menu
+                          id="simple-menu"
+                          anchorEl={anchorEl}
+                          open={Boolean(anchorEl)}
+                          onClose={this.handleClose}
+                        >
+                          <MenuItem onClick={this.handleEdit}>
+                            <CreateIcon /> Edit
+                          </MenuItem>
+                          <MenuItem onClick={this.handleDelete}>
+                            <DeleteIcon /> Delete
+                          </MenuItem>
                         </Menu>
                       </>
                     </TableCell>
@@ -116,6 +139,6 @@ class MoviesTable extends React.Component {
       </>
     );
   }
-};
+}
 
 export default withHocs(MoviesTable);

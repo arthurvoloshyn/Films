@@ -10,12 +10,12 @@ export default createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#E535AB'
+      main: '#E535AB',
     },
     secondary: blue,
     error: red,
     contrastThreshold: 3,
     tonalOffset: 0.2,
     contrastText: '#fff',
-  }
+  },
 });

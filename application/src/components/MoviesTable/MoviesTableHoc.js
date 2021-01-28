@@ -6,9 +6,9 @@ import { moviesQuery } from './queries';
 import { styles } from './styles';
 
 const withGraphQL = graphql(moviesQuery, {
-    options: ({ name = '' }) => ({
-        variables: { name },
-    }),
+  options: ({ name = '' }) => ({
+    variables: { name },
+  }),
 });
 
 export default compose(withStyles(styles), withGraphQL);

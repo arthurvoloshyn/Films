@@ -5,7 +5,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import withHocs from './MoviesSearchHoc';
 
 class MoviesSearch extends React.Component {
-
   handleKeyPress = e => {
     const { handleSearch } = this.props;
     handleSearch(e);
@@ -32,6 +31,6 @@ class MoviesSearch extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default withHocs(MoviesSearch);
