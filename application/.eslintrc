@@ -1,0 +1,77 @@
+{
+  "parser": "babel-eslint",
+
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+
+  "extends": [
+    "react-app",
+    "prettier/react",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:jsx-a11y/strict"
+  ],
+
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+
+  "plugins": [
+    "jsx-a11y",
+    "react",
+    "react-hooks",
+    "babel"
+  ],
+
+  "rules": {
+    "react/display-name": ["error", {"ignoreTranspilerName": false }],
+    "react/forbid-prop-types": ["error", {"forbid": ["any"]}],
+    "react/jsx-boolean-value": "error",
+    "react/jsx-closing-bracket-location": "error",
+    "react/jsx-curly-spacing": "error",
+    "react/jsx-indent-props": "error",
+    "react/jsx-key": "error",
+    "react/jsx-max-props-per-line": "error",
+    "react/jsx-no-literals": "off",
+    "react/jsx-no-undef": "error",
+    "react/jsx-pascal-case": "error",
+    "react/jsx-sort-props": "error",
+    "react/no-danger": "error",
+    "react/no-did-update-set-state": "error",
+    "react/no-multi-comp": "error",
+    "react/no-string-refs": "error",
+    "react/no-set-state": "off",
+    "react/no-unknown-property": "error",
+    "react/prefer-es6-class": "error",
+    "react/react-in-jsx-scope": "error",
+    "react/self-closing-comp": "error",
+    "react/sort-comp": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/no-did-mount-set-state": "error",
+    "react/no-direct-mutation-state": "error",
+    "react/jsx-no-bind": ["error", { "allowArrowFunctions": true }],
+    "react/jsx-no-duplicate-props": "error",
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-fragments": [
+      "error",
+      "syntax"
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/state-in-constructor": "off",
+    "react/button-has-type": "off",
+    "react/prop-types": "error",
+
+    "jsx-a11y/anchor-is-valid": "error",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off"
+  }
+}
