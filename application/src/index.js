@@ -11,4 +11,5 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
+/* eslint-disable-next-line no-console */
 reportWebVitals(console.log);
