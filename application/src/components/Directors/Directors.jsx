@@ -23,7 +23,12 @@ class Directors extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ name: '', age: 0, id: null, open: false });
+    this.setState({
+      name: '',
+      age: 0,
+      id: null,
+      open: false,
+    });
   };
 
   handleChange = name => ({ target }) => {
@@ -38,17 +43,17 @@ class Directors extends React.Component {
       <>
         <DirectorsForm
           handleChange={this.handleChange}
-          selectedValue={{ name, age, id }}
-          open={open}
           onClose={this.handleClose}
+          open={open}
+          selectedValue={{ name, age, id }}
         />
         <div className={classes.wrapper}>
-          <DirectorsTable onOpen={this.handleClickOpen} onClose={this.handleClose} />
+          <DirectorsTable onClose={this.handleClose} onOpen={this.handleClickOpen} />
           <Fab
-            onClick={() => this.handleClickOpen(null)}
-            color="primary"
             aria-label="Add"
             className={classes.fab}
+            color="primary"
+            onClick={() => this.handleClickOpen(null)}
           >
             <AddIcon />
           </Fab>

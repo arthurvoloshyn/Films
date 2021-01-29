@@ -22,13 +22,13 @@ class DirectorsDialog extends React.Component {
 
     return (
       <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        aria-labelledby="alert-dialog-title"
+        onClose={handleClose}
+        open={open}
       >
         <DialogTitle id="alert-dialog-title">
-          {'Are you sire that you want to delete element?'}
+          Are you sire that you want to delete element?
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -36,10 +36,10 @@ class DirectorsDialog extends React.Component {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button color="primary" onClick={handleClose}>
             <BlockIcon /> Cancel
           </Button>
-          <Button onClick={this.handleDelete} color="primary" autoFocus>
+          <Button autoFocus color="primary" onClick={this.handleDelete}>
             <DeleteForeverIcon /> Confirm
           </Button>
         </DialogActions>

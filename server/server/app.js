@@ -13,7 +13,9 @@ const {
 } = require('../constants/dbPaths');
 const schema = require('../schema/schema');
 
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config({
+  path: path.resolve(__dirname, '../.env'),
+});
 
 const { SERVER_PORT, DB_NAME, DB_USER, DB_PASS, DB_CLUSTER, GRAPHQL_REQUEST } = process.env;
 
@@ -23,7 +25,11 @@ const PORT = SERVER_PORT || 3005;
 /* eslint-disable no-console, max-len */
 mongooseConnect(
   `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_CLUSTER}.mongodb.net/${DB_NAME}?${retryWritesParam}${retryWritesValue}&${writeParam}${writeValue}`,
-  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  },
 );
 
 app.use(cors());

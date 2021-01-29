@@ -9,10 +9,12 @@
 
   "extends": [
     "react-app",
+    "prettier",
     "prettier/react",
     "airbnb",
     "airbnb/hooks",
     "plugin:react/recommended",
+    "plugin:prettier/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:jsx-a11y/strict"
   ],
@@ -27,10 +29,27 @@
     "jsx-a11y",
     "react",
     "react-hooks",
-    "babel"
+    "babel",
+    "prettier"
   ],
 
   "rules": {
+    "indent": ["error", 2, {
+      "SwitchCase": 1,
+      "VariableDeclarator": 1,
+      "outerIIFEBody": 1,
+      "MemberExpression": 1,
+      "FunctionDeclaration": { "parameters": 1, "body": 1 },
+      "FunctionExpression": { "parameters": 1, "body": 1 },
+      "CallExpression": { "arguments": 1 },
+      "ArrayExpression": 1,
+      "ObjectExpression": 1,
+      "ImportDeclaration": 1,
+      "flatTernaryExpressions": false,
+      "ignoreComments": false
+    }],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true, "allowTaggedTemplates": true }],
+
     "react/display-name": ["error", {"ignoreTranspilerName": false }],
     "react/forbid-prop-types": ["error", {"forbid": ["any"]}],
     "react/jsx-boolean-value": "error",
@@ -69,6 +88,8 @@
     "react/state-in-constructor": "off",
     "react/button-has-type": "off",
     "react/prop-types": "error",
+
+    "prettier/prettier": "error",
 
     "jsx-a11y/anchor-is-valid": "error",
     "jsx-a11y/click-events-have-key-events": "off",

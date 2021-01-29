@@ -26,8 +26,21 @@ class MoviesForm extends React.Component {
     const { id, name, genre, rate, directorId, watched } = selectedValue;
 
     id
-      ? updateMovie({ id, name, genre, watched: !!watched, rate: +rate, directorId })
-      : addMovie({ name, genre, watched: !!watched, rate: +rate, directorId });
+      ? updateMovie({
+          id,
+          name,
+          genre,
+          watched: !!watched,
+          rate: +rate,
+          directorId,
+        })
+      : addMovie({
+          name,
+          genre,
+          watched: !!watched,
+          rate: +rate,
+          directorId,
+        });
     onClose();
   };
 
@@ -45,42 +58,42 @@ class MoviesForm extends React.Component {
     const { directors = [] } = data;
 
     return (
-      <Dialog onClose={this.handleClose} open={open} aria-labelledby="simple-dialog-title">
+      <Dialog aria-labelledby="simple-dialog-title" onClose={this.handleClose} open={open}>
         <DialogTitle className={classes.title} id="simple-dialog-title">
           Movie information
         </DialogTitle>
-        <form onSubmit={this.handleSave} className={classes.container} autoComplete="off">
+        <form autoComplete="off" className={classes.container} onSubmit={this.handleSave}>
           <TextField
+            className={classes.textField}
             id="outlined-name"
             label="Name"
-            className={classes.textField}
-            value={name}
-            onChange={handleChange('name')}
             margin="normal"
-            variant="outlined"
+            onChange={handleChange('name')}
             required
+            value={name}
+            variant="outlined"
           />
           <TextField
+            className={classes.textField}
             id="outlined-genre"
             label="Genre"
-            className={classes.textField}
-            value={genre}
-            onChange={handleChange('genre')}
             margin="normal"
-            variant="outlined"
+            onChange={handleChange('genre')}
             required
+            value={genre}
+            variant="outlined"
           />
           <TextField
+            className={classes.textField}
             id="outlined-rate"
             label="Rate"
-            value={rate}
+            margin="normal"
             onChange={handleChange('rate')}
             type="number"
-            className={classes.textField}
-            margin="normal"
+            value={rate}
             variant="outlined"
           />
-          <FormControl variant="outlined" className={classes.formControlSelect} required>
+          <FormControl className={classes.formControlSelect} required variant="outlined">
             <InputLabel
               ref={ref => {
                 this.InputLabelRef = ref;
@@ -90,9 +103,9 @@ class MoviesForm extends React.Component {
               Director
             </InputLabel>
             <Select
-              value={directorId}
+              input={<OutlinedInput id="outlined-director" labelWidth={70} name="directorId" />}
               onChange={handleSelectChange}
-              input={<OutlinedInput name="directorId" id="outlined-director" labelWidth={70} />}
+              value={directorId}
             >
               {directors.map(director => (
                 <MenuItem key={director.id} value={director.id}>
@@ -112,7 +125,7 @@ class MoviesForm extends React.Component {
               }
               label="Watched movie"
             />
-            <Button type="submit" variant="contained" color="primary" className={classes.button}>
+            <Button className={classes.button} color="primary" type="submit" variant="contained">
               <SaveIcon /> Save
             </Button>
           </div>

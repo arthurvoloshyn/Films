@@ -27,34 +27,34 @@ class DirectorsForm extends React.Component {
     const { name, age } = selectedValue;
 
     return (
-      <Dialog onClose={this.handleClose} open={open} aria-labelledby="simple-dialog-title">
+      <Dialog aria-labelledby="simple-dialog-title" onClose={this.handleClose} open={open}>
         <DialogTitle className={classes.title} id="simple-dialog-title">
           Director information
         </DialogTitle>
-        <form onSubmit={this.handleSave} className={classes.container} autoComplete="off">
+        <form autoComplete="off" className={classes.container} onSubmit={this.handleSave}>
           <TextField
+            className={classes.textField}
             id="outlined-name"
             label="Name"
-            className={classes.textField}
-            value={name}
-            onChange={handleChange('name')}
             margin="normal"
-            variant="outlined"
+            onChange={handleChange('name')}
             required
+            value={name}
+            variant="outlined"
           />
           <TextField
+            className={classes.textField}
             id="outlined-rate"
             label="Age"
-            className={classes.textField}
-            value={age}
-            onChange={handleChange('age')}
-            type="number"
             margin="normal"
-            variant="outlined"
+            onChange={handleChange('age')}
             required
+            type="number"
+            value={age}
+            variant="outlined"
           />
           <div className={classes.wrapper}>
-            <Button type="submit" variant="contained" color="primary" className={classes.button}>
+            <Button className={classes.button} color="primary" type="submit" variant="contained">
               <SaveIcon /> Save
             </Button>
           </div>

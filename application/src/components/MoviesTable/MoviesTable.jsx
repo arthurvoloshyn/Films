@@ -43,6 +43,7 @@ class MoviesTable extends React.Component {
   handleDialogOpen = () => {
     this.setState({ openDialog: true });
   };
+
   handleDialogClose = () => {
     this.setState({ openDialog: false });
   };
@@ -79,12 +80,12 @@ class MoviesTable extends React.Component {
       <>
         <Paper>
           <MoviesSearch
-            name={name}
             handleChange={this.handleChange}
             handleSearch={this.handleSearch}
+            name={name}
           />
         </Paper>
-        <MoviesDialog open={openDialog} handleClose={this.handleDialogClose} id={activeElem.id} />
+        <MoviesDialog handleClose={this.handleDialogClose} id={activeElem.id} open={openDialog} />
         <Paper className={classes.root}>
           <Table>
             <TableHead>
@@ -94,45 +95,43 @@ class MoviesTable extends React.Component {
                 <TableCell align="right">Rate</TableCell>
                 <TableCell>Director</TableCell>
                 <TableCell>Watched</TableCell>
-                <TableCell align="right"></TableCell>
+                <TableCell align="right" />
               </TableRow>
             </TableHead>
             <TableBody>
-              {movies.map(movie => {
-                return (
-                  <TableRow key={movie.id}>
-                    <TableCell component="th" scope="row">
-                      {movie.name}
-                    </TableCell>
-                    <TableCell>{movie.genre}</TableCell>
-                    <TableCell align="right">{movie.rate}</TableCell>
-                    <TableCell>{movie.director?.name || 'No director'}</TableCell>
-                    <TableCell>
-                      <Checkbox checked={movie.watched} disabled />
-                    </TableCell>
-                    <TableCell align="right">
-                      <>
-                        <IconButton color="inherit" onClick={e => this.handleClick(e, movie)}>
-                          <MoreIcon />
-                        </IconButton>
-                        <Menu
-                          id="simple-menu"
-                          anchorEl={anchorEl}
-                          open={Boolean(anchorEl)}
-                          onClose={this.handleClose}
-                        >
-                          <MenuItem onClick={this.handleEdit}>
-                            <CreateIcon /> Edit
-                          </MenuItem>
-                          <MenuItem onClick={this.handleDelete}>
-                            <DeleteIcon /> Delete
-                          </MenuItem>
-                        </Menu>
-                      </>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+              {movies.map(movie => (
+                <TableRow key={movie.id}>
+                  <TableCell component="th" scope="row">
+                    {movie.name}
+                  </TableCell>
+                  <TableCell>{movie.genre}</TableCell>
+                  <TableCell align="right">{movie.rate}</TableCell>
+                  <TableCell>{movie.director?.name || 'No director'}</TableCell>
+                  <TableCell>
+                    <Checkbox checked={movie.watched} disabled />
+                  </TableCell>
+                  <TableCell align="right">
+                    <>
+                      <IconButton color="inherit" onClick={e => this.handleClick(e, movie)}>
+                        <MoreIcon />
+                      </IconButton>
+                      <Menu
+                        anchorEl={anchorEl}
+                        id="simple-menu"
+                        onClose={this.handleClose}
+                        open={Boolean(anchorEl)}
+                      >
+                        <MenuItem onClick={this.handleEdit}>
+                          <CreateIcon /> Edit
+                        </MenuItem>
+                        <MenuItem onClick={this.handleDelete}>
+                          <DeleteIcon /> Delete
+                        </MenuItem>
+                      </Menu>
+                    </>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </Paper>
