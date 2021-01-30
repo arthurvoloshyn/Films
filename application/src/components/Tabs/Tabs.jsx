@@ -1,35 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import MovieCreationIcon from '@material-ui/icons/MovieCreation';
 import CameraIcon from '@material-ui/icons/Camera';
 
 import Movies from '../Movies/Movies';
 import Directors from '../Directors/Directors';
+import TabContainer from '../TabContainer/TabContainer';
 
 import withHocs from './TabsHoc';
 
-const TabContainer = ({ children, dir }) => (
-  <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
-    {children}
-  </Typography>
-);
-
-class SimpleTabs extends React.Component {
+class SimpleTabs extends Component {
   state = {
     value: 0,
   };
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
+  handleChange = (event, value) => this.setState({ value });
 
-  handleChangeIndex = index => {
-    this.setState({ value: index });
-  };
+  handleChangeIndex = index => this.setState({ value: index });
 
   render() {
     const { classes, theme } = this.props;
@@ -59,5 +50,10 @@ class SimpleTabs extends React.Component {
     );
   }
 }
+
+SimpleTabs.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+};
 
 export default withHocs(SimpleTabs);
