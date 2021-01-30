@@ -1,7 +1,5 @@
-const styles = () => ({
+export default () => ({
   root: {
     padding: 24,
   },
 });
-
-export default styles;

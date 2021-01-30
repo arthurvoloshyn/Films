@@ -1,7 +1,7 @@
 import React from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
 import theme from './components/theme';
 import Tabs from './components/Tabs/Tabs';
