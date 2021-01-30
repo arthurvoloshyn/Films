@@ -9,29 +9,24 @@ import { directorsQuery as directorsNameQuery } from './queries';
 
 import styles from './styles';
 
+const moviesFormMutationInstance = (movie, mutate) =>
+  mutate({
+    variables: movie,
+    refetchQueries: [
+      { query: moviesQuery, variables: { name: '' } },
+      { query: directorsQuery, variables: { name: '' } },
+    ],
+  });
+
 const withGraphQL = compose(
   graphql(addMovieMutation, {
     props: ({ mutate }) => ({
-      addMovie: movie =>
-        mutate({
-          variables: movie,
-          refetchQueries: [
-            { query: moviesQuery, variables: { name: '' } },
-            { query: directorsQuery, variables: { name: '' } },
-          ],
-        }),
+      addMovie: movie => moviesFormMutationInstance(movie, mutate),
     }),
   }),
   graphql(updateMovieMutation, {
     props: ({ mutate }) => ({
-      updateMovie: movie =>
-        mutate({
-          variables: movie,
-          refetchQueries: [
-            { query: moviesQuery, variables: { name: '' } },
-            { query: directorsQuery, variables: { name: '' } },
-          ],
-        }),
+      updateMovie: movie => moviesFormMutationInstance(movie, mutate),
     }),
   }),
   graphql(directorsNameQuery, {

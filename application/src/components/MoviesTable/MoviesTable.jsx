@@ -24,6 +24,7 @@ class MoviesTable extends Component {
     anchorEl: null,
     openDialog: false,
     searchName: '',
+    data: {},
   };
 
   handleChange = name => ({ target: { value } }) => this.setState({ [name]: value });
@@ -65,7 +66,7 @@ class MoviesTable extends Component {
   };
 
   render() {
-    const { anchorEl, openDialog, data: activeElem = {}, searchName } = this.state;
+    const { anchorEl, openDialog, data: activeElem, searchName } = this.state;
 
     const {
       classes,
