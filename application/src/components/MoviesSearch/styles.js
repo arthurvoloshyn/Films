@@ -1,4 +1,4 @@
-export const styles = theme => ({
+export default theme => ({
   search: {
     position: 'relative',
     width: '100%',
