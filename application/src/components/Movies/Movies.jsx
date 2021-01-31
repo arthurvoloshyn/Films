@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -7,7 +8,7 @@ import MoviesForm from '../MoviesForm/MoviesForm';
 
 import withHocs from './MoviesHoc';
 
-class Movies extends React.Component {
+class Movies extends Component {
   state = {
     open: false,
     name: '',
@@ -17,15 +18,14 @@ class Movies extends React.Component {
     directorId: '',
   };
 
-  handleClickOpen = (data = {}) => {
+  handleClickOpen = (data = {}) =>
     this.setState({
       ...data,
       open: true,
-      directorId: data.director ? data.director.id : '',
+      directorId: data.director?.id || '',
     });
-  };
 
-  handleClose = () => {
+  handleClose = () =>
     this.setState({
       name: '',
       genre: '',
@@ -35,19 +35,16 @@ class Movies extends React.Component {
       id: null,
       open: false,
     });
+
+  handleSelectChange = ({ target: { name, value } }) => this.setState({ [name]: value });
+
+  handleChange = name => ({ target: { type, value, checked } }) => {
+    const val = type === 'checkbox' ? checked : value;
+
+    this.setState({ [name]: val });
   };
 
-  handleSelectChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
-  };
-
-  handleCheckboxChange = name => ({ target }) => {
-    this.setState({ [name]: target.checked });
-  };
-
-  handleChange = name => ({ target }) => {
-    this.setState({ [name]: target.value });
-  };
+  handleAddMovie = () => this.handleClickOpen();
 
   render() {
     const { id, name, genre, watched, rate, directorId, open } = this.state;
@@ -57,7 +54,6 @@ class Movies extends React.Component {
       <>
         <MoviesForm
           handleChange={this.handleChange}
-          handleCheckboxChange={this.handleCheckboxChange}
           handleSelectChange={this.handleSelectChange}
           onClose={this.handleClose}
           open={open}
@@ -76,7 +72,7 @@ class Movies extends React.Component {
             aria-label="Add"
             className={classes.fab}
             color="primary"
-            onClick={() => this.handleClickOpen()}
+            onClick={this.handleAddMovie}
           >
             <AddIcon />
           </Fab>
@@ -85,5 +81,9 @@ class Movies extends React.Component {
     );
   }
 }
+
+Movies.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withHocs(Movies);

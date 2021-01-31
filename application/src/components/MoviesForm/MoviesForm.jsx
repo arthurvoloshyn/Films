@@ -21,7 +21,6 @@ const MoviesForm = ({
   open,
   handleChange,
   handleSelectChange,
-  handleCheckboxChange,
   selectedValue,
   onClose,
   addMovie,
@@ -88,11 +87,7 @@ const MoviesForm = ({
         <div className={classes.wrapper}>
           <FormControlLabel
             control={
-              <Checkbox
-                checked={watched}
-                onChange={handleCheckboxChange('watched')}
-                value="watched"
-              />
+              <Checkbox checked={watched} onChange={handleChange('watched')} value="watched" />
             }
             label="Watched movie"
           />
@@ -118,7 +113,6 @@ MoviesForm.propTypes = {
   open: PropTypes.bool,
   handleChange: PropTypes.func,
   handleSelectChange: PropTypes.func,
-  handleCheckboxChange: PropTypes.func,
   selectedValue: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
@@ -139,7 +133,6 @@ MoviesForm.defaultProps = {
   open: false,
   handleChange: () => {},
   handleSelectChange: () => {},
-  handleCheckboxChange: () => {},
   selectedValue: {},
   onClose: () => {},
   addMovie: () => {},

@@ -1,5 +1,5 @@
 export default () => ({
   root: {
-    padding: 24,
+    padding: 8 * 3,
   },
 });

@@ -1,5 +1,5 @@
-import { compose } from 'recompose';
 import { graphql } from 'react-apollo';
+import { compose } from 'recompose';
 
 import { directorsQuery } from '../DirectorsTable/queries';
 import { moviesQuery } from '../MoviesTable/queries';
