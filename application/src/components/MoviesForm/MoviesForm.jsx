@@ -18,11 +18,11 @@ import withHocs from './MoviesFormHoc';
 
 const MoviesForm = ({
   data: { directors = [] } = {},
+  selectedValue: { id, name, genre, rate, directorId, watched },
   classes,
   open,
   handleChange,
   handleSelectChange,
-  selectedValue: { id, name, genre, rate, directorId, watched },
   onClose,
   addMovie,
   updateMovie,
