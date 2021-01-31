@@ -67,7 +67,7 @@ class Movies extends Component {
           }}
         />
         <div className={classes.wrapper}>
-          <MoviesTable onClose={this.handleClose} onOpen={this.handleClickOpen} />
+          <MoviesTable onOpen={this.handleClickOpen} />
           <Fab
             aria-label="Add"
             className={classes.fab}
