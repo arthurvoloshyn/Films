@@ -128,10 +128,12 @@ class MoviesTable extends Component {
                           open={!!anchorEl}
                         >
                           <MenuItem onClick={this.handleEdit}>
-                            <CreateIcon /> Edit
+                            <CreateIcon />
+                            Edit
                           </MenuItem>
                           <MenuItem onClick={this.handleDelete}>
-                            <DeleteIcon /> Delete
+                            <DeleteIcon />
+                            Delete
                           </MenuItem>
                         </Menu>
                       </>

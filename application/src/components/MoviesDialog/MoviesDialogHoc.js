@@ -1,9 +1,8 @@
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 
-import { directorsQuery } from '../DirectorsTable/queries';
-import { moviesQuery } from '../MoviesTable/queries';
-import { deleteMovieMutation } from './mutations';
+import { directorsWithMoviesQuery, moviesQuery } from '../../graphql/queries';
+import { deleteMovieMutation } from '../../graphql/mutations';
 
 const withGraphqlDelete = graphql(deleteMovieMutation, {
   props: ({ mutate }) => ({
@@ -12,7 +11,7 @@ const withGraphqlDelete = graphql(deleteMovieMutation, {
         variables: id,
         refetchQueries: [
           { query: moviesQuery, variables: { name: '' } },
-          { query: directorsQuery, variables: { name: '' } },
+          { query: directorsWithMoviesQuery, variables: { name: '' } },
         ],
       }),
   }),

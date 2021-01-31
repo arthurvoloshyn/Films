@@ -2,10 +2,10 @@ import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'recompose';
 import { graphql } from 'react-apollo';
 
-import { directorsQuery } from './queries';
+import { directorsWithMoviesQuery } from '../../graphql/queries';
 import { styles } from './styles';
 
-const withGraphQL = graphql(directorsQuery, {
+const withGraphQL = graphql(directorsWithMoviesQuery, {
   options: ({ name = '' }) => ({
     variables: { name },
   }),

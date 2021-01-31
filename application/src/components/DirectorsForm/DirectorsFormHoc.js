@@ -2,9 +2,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { compose } from 'recompose';
 import { graphql } from 'react-apollo';
 
-import { moviesQuery } from '../MoviesTable/queries';
-import { directorsQuery } from '../DirectorsTable/queries';
-import { addDirectorMutation, updateDirectorMutation } from './mutations';
+import { moviesQuery, directorsWithMoviesQuery } from '../../graphql/queries';
+import { addDirectorMutation, updateDirectorMutation } from '../../graphql/mutations';
 
 import { styles } from './styles';
 
@@ -15,7 +14,7 @@ const withGraphQL = compose(
         mutate({
           variables: director,
           refetchQueries: [
-            { query: directorsQuery, variables: { name: '' } },
+            { query: directorsWithMoviesQuery, variables: { name: '' } },
             { query: moviesQuery, variables: { name: '' } },
           ],
         }),
@@ -27,7 +26,7 @@ const withGraphQL = compose(
         mutate({
           variables: director,
           refetchQueries: [
-            { query: directorsQuery, variables: { name: '' } },
+            { query: directorsWithMoviesQuery, variables: { name: '' } },
             { query: moviesQuery, variables: { name: '' } },
           ],
         }),

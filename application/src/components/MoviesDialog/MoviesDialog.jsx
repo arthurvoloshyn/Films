@@ -34,10 +34,12 @@ const MoviesDialog = ({ id, handleClose, deleteMovie, open }) => {
       </DialogContent>
       <DialogActions>
         <Button color="primary" onClick={handleClose}>
-          <BlockIcon /> Cancel
+          <BlockIcon />
+          Cancel
         </Button>
         <Button autoFocus color="primary" onClick={handleDelete}>
-          <DeleteForeverIcon /> Confirm
+          <DeleteForeverIcon />
+          Confirm
         </Button>
       </DialogActions>
     </Dialog>

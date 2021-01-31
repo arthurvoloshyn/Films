@@ -15,3 +15,11 @@ export const updateDirectorMutation = gql`
     }
   }
 `;
+
+export const deleteDirectorMutation = gql`
+  mutation deleteDirector($id: ID) {
+    deleteDirector(id: $id) {
+      id
+    }
+  }
+`;

@@ -92,7 +92,8 @@ const MoviesForm = ({
             label="Watched movie"
           />
           <Button className={classes.button} color="primary" type="submit" variant="contained">
-            <SaveIcon /> Save
+            <SaveIcon />
+            Save
           </Button>
         </div>
       </form>
