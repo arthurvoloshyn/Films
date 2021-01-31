@@ -3,19 +3,13 @@ import PropTypes from 'prop-types';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
+import { moviesInitState } from '../../constants/movies';
 import MoviesTable from '../MoviesTable/MoviesTable';
 import MoviesForm from '../MoviesForm/MoviesForm';
 import withHocs from './MoviesHoc';
 
 class Movies extends Component {
-  state = {
-    open: false,
-    name: '',
-    genre: '',
-    watched: false,
-    rate: 0,
-    directorId: '',
-  };
+  state = moviesInitState;
 
   handleClickOpen = (data = {}) =>
     this.setState({
@@ -24,16 +18,7 @@ class Movies extends Component {
       directorId: data.director?.id || '',
     });
 
-  handleClose = () =>
-    this.setState({
-      name: '',
-      genre: '',
-      watched: false,
-      rate: 0,
-      directorId: '',
-      id: null,
-      open: false,
-    });
+  handleClose = () => this.setState(moviesInitState);
 
   handleSelectChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 

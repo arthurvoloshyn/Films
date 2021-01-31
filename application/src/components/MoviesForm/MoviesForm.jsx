@@ -22,15 +22,13 @@ const MoviesForm = ({
   open,
   handleChange,
   handleSelectChange,
-  selectedValue,
+  selectedValue: { id, name, genre, rate, directorId, watched },
   onClose,
   addMovie,
   updateMovie,
 }) => {
   const handleSave = e => {
     e.preventDefault();
-
-    const { id, name, genre, rate, directorId, watched } = selectedValue;
 
     const movieProps = {
       name,
@@ -44,9 +42,7 @@ const MoviesForm = ({
     onClose();
   };
 
-  const { name: movieName, genre, rate, directorId, watched } = selectedValue;
-
-  const textFieldsList = moviesFormTextFieldsList(movieName, genre, rate);
+  const textFieldsList = moviesFormTextFieldsList(name, genre, rate);
 
   return (
     <Dialog aria-labelledby="simple-dialog-title" onClose={onClose} open={open}>
@@ -54,14 +50,14 @@ const MoviesForm = ({
         Movie information
       </DialogTitle>
       <form autoComplete="off" className={classes.container} onSubmit={handleSave}>
-        {textFieldsList.map(({ id, label, name, required, value }) => (
+        {textFieldsList.map(({ id: textFieldID, name: textFieldName, label, required, value }) => (
           <TextField
-            key={id}
+            key={textFieldID}
             className={classes.textField}
-            id={id}
+            id={textFieldID}
             label={label}
             margin="normal"
-            onChange={handleChange(name)}
+            onChange={handleChange(textFieldName)}
             required={required}
             value={value}
             variant="outlined"
@@ -74,9 +70,9 @@ const MoviesForm = ({
             onChange={handleSelectChange}
             value={directorId}
           >
-            {directors.map(({ id, name }) => (
-              <MenuItem key={id} value={id}>
-                {name}
+            {directors.map(({ id: directorID, name: directorName }) => (
+              <MenuItem key={directorId} value={directorID}>
+                {directorName}
               </MenuItem>
             ))}
           </Select>

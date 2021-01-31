@@ -12,3 +12,13 @@ export const moviesFormTextFieldsList = (movieName, genre, rate) => [
   { id: 'outlined-genre', label: 'Genre', name: 'genre', required: true, value: genre },
   { id: 'outlined-rate', label: 'Rate', name: 'rate', required: false, value: rate },
 ];
+
+export const moviesInitState = {
+  id: null,
+  open: false,
+  name: '',
+  genre: '',
+  watched: false,
+  rate: 0,
+  directorId: '',
+};
