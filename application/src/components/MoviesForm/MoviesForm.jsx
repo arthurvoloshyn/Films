@@ -16,7 +16,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import withHocs from './MoviesFormHoc';
 
 const MoviesForm = ({
-  data: { directors },
+  data: { directors = [] } = {},
   classes,
   open,
   handleChange,
@@ -109,7 +109,7 @@ MoviesForm.propTypes = {
         name: PropTypes.string,
       }),
     ),
-  }),
+  }).isRequired,
   open: PropTypes.bool,
   handleChange: PropTypes.func,
   handleSelectChange: PropTypes.func,
@@ -117,7 +117,7 @@ MoviesForm.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     genre: PropTypes.string,
-    rate: PropTypes.number,
+    rate: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     directorId: PropTypes.string,
     watched: PropTypes.bool,
   }),
@@ -127,9 +127,6 @@ MoviesForm.propTypes = {
 };
 
 MoviesForm.defaultProps = {
-  data: {
-    directors: [],
-  },
   open: false,
   handleChange: () => {},
   handleSelectChange: () => {},

@@ -45,13 +45,14 @@ const MoviesDialog = ({ id, handleClose, deleteMovie, open }) => {
 };
 
 MoviesDialog.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   handleClose: PropTypes.func,
   deleteMovie: PropTypes.func,
   open: PropTypes.bool,
 };
 
 MoviesDialog.defaultProps = {
+  id: '',
   handleClose: () => {},
   deleteMovie: () => {},
   open: false,

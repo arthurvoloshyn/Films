@@ -68,10 +68,7 @@ class MoviesTable extends Component {
   render() {
     const { anchorEl, openDialog, data: activeElem, searchName } = this.state;
 
-    const {
-      classes,
-      data: { movies },
-    } = this.props;
+    const { classes, data: { movies = [] } = {} } = this.props;
 
     const moviesTableHeadList = [
       { title: 'Name' },
@@ -166,16 +163,12 @@ MoviesTable.propTypes = {
       }),
     ),
     fetchMore: PropTypes.func,
-  }),
+  }).isRequired,
   onOpen: PropTypes.func,
 };
 
 MoviesTable.defaultProps = {
   onOpen: () => {},
-  data: {
-    movies: [],
-    fetchMore: () => {},
-  },
 };
 
 export default withHocs(MoviesTable);
