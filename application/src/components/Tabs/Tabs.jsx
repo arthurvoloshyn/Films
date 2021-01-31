@@ -10,7 +10,6 @@ import CameraIcon from '@material-ui/icons/Camera';
 import Movies from '../Movies/Movies';
 import Directors from '../Directors/Directors';
 import TabContainer from '../TabContainer/TabContainer';
-
 import withHocs from './TabsHoc';
 
 class SimpleTabs extends Component {

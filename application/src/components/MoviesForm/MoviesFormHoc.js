@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { directorsWithMoviesQuery, directorsQuery, moviesQuery } from '../../graphql/queries';
 import { addMovieMutation, updateMovieMutation } from '../../graphql/mutations';
-
 import styles from './styles';
 
 const moviesFormMutationInstance = (movie, mutate) =>

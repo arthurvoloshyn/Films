@@ -14,9 +14,9 @@ import Menu from '@material-ui/core/Menu';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
+import { moviesTableHeadList } from '../../constants/movies';
 import MoviesDialog from '../MoviesDialog/MoviesDialog';
 import MoviesSearch from '../MoviesSearch/MoviesSearch';
-
 import withHocs from './MoviesTableHoc';
 
 class MoviesTable extends Component {
@@ -69,15 +69,6 @@ class MoviesTable extends Component {
     const { anchorEl, openDialog, data: activeElem, searchName } = this.state;
 
     const { classes, data: { movies = [] } = {} } = this.props;
-
-    const moviesTableHeadList = [
-      { title: 'Name' },
-      { title: 'Genre' },
-      { title: 'Rate', align: 'right' },
-      { title: 'Director' },
-      { title: 'Watched' },
-      { align: 'right' },
-    ];
 
     return (
       <>

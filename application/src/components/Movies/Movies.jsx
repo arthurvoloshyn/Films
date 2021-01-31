@@ -5,7 +5,6 @@ import AddIcon from '@material-ui/icons/Add';
 
 import MoviesTable from '../MoviesTable/MoviesTable';
 import MoviesForm from '../MoviesForm/MoviesForm';
-
 import withHocs from './MoviesHoc';
 
 class Movies extends Component {

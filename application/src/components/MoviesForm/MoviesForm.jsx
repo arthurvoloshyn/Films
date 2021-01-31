@@ -13,6 +13,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import SaveIcon from '@material-ui/icons/Save';
 
+import { moviesFormTextFieldsList } from '../../constants/movies';
 import withHocs from './MoviesFormHoc';
 
 const MoviesForm = ({
@@ -45,11 +46,7 @@ const MoviesForm = ({
 
   const { name: movieName, genre, rate, directorId, watched } = selectedValue;
 
-  const textFieldsList = [
-    { id: 'outlined-name', label: 'Name', name: 'name', required: true, value: movieName },
-    { id: 'outlined-genre', label: 'Genre', name: 'genre', required: true, value: genre },
-    { id: 'outlined-rate', label: 'Rate', name: 'rate', required: false, value: rate },
-  ];
+  const textFieldsList = moviesFormTextFieldsList(movieName, genre, rate);
 
   return (
     <Dialog aria-labelledby="simple-dialog-title" onClose={onClose} open={open}>
