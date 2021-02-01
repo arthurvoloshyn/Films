@@ -12,7 +12,7 @@ import Menu from '@material-ui/core/Menu';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
-import DirectorsDialog from '../DirectorsDialog/DirectorsDialog';
+import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import MoviesSearch from '../MoviesSearch/MoviesSearch';
 
 import withHocs from './DirectorsTableHoc';
@@ -70,7 +70,7 @@ class DirectorsTable extends React.Component {
 
   render() {
     const { anchorEl, openDialog, data: activeElem = {}, name } = this.state;
-    const { classes, data = {} } = this.props;
+    const { classes, data = {}, deleteDirector } = this.props;
     const { directors = [] } = data;
 
     return (
@@ -82,8 +82,9 @@ class DirectorsTable extends React.Component {
             name={name}
           />
         </Paper>
-        <DirectorsDialog
+        <DeleteDialog
           handleClose={this.handleDialogClose}
+          handleDelete={deleteDirector}
           id={activeElem.id}
           open={openDialog}
         />
