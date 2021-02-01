@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 import { withStyles } from '@material-ui/core/styles';
 
-import { mutationInstance } from '../../utils/utils';
+import { mutationInstance, queryInstance } from '../../utils/utils';
 import { directorsQuery } from '../../graphql/queries';
 import { addMovieMutation, updateMovieMutation } from '../../graphql/mutations';
 import styles from './styles';
@@ -18,11 +18,7 @@ const withGraphQL = compose(
       updateMovie: movie => mutationInstance(movie, mutate),
     }),
   }),
-  graphql(directorsQuery, {
-    options: ({ name = '' }) => ({
-      variables: { name },
-    }),
-  }),
+  graphql(directorsQuery, queryInstance),
 );
 
 export default compose(withStyles(styles), withGraphQL);

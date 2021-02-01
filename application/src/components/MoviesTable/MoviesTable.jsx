@@ -15,7 +15,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
 import { moviesTableHeadList } from '../../constants/movies';
-import MoviesDialog from '../MoviesDialog/MoviesDialog';
+import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import MoviesSearch from '../MoviesSearch/MoviesSearch';
 import withHocs from './MoviesTableHoc';
 
@@ -68,7 +68,7 @@ class MoviesTable extends Component {
   render() {
     const { anchorEl, openDialog, data: activeElem, searchName } = this.state;
 
-    const { classes, data: { movies = [] } = {} } = this.props;
+    const { classes, data: { movies = [] } = {}, deleteMovie } = this.props;
 
     return (
       <>
@@ -79,7 +79,12 @@ class MoviesTable extends Component {
             name={searchName}
           />
         </Paper>
-        <MoviesDialog handleClose={this.handleDialogClose} id={activeElem.id} open={openDialog} />
+        <DeleteDialog
+          handleClose={this.handleDialogClose}
+          handleDelete={deleteMovie}
+          id={activeElem.id}
+          open={openDialog}
+        />
         <Paper className={classes.root}>
           <Table>
             <TableHead>
@@ -158,10 +163,12 @@ MoviesTable.propTypes = {
     fetchMore: PropTypes.func,
   }).isRequired,
   onOpen: PropTypes.func,
+  deleteMovie: PropTypes.func,
 };
 
 MoviesTable.defaultProps = {
   onOpen: () => {},
+  deleteMovie: () => {},
 };
 
 export default withHocs(MoviesTable);

@@ -71,7 +71,7 @@ const MoviesForm = ({
             value={directorId}
           >
             {directors.map(({ id: directorID, name: directorName }) => (
-              <MenuItem key={directorId} value={directorID}>
+              <MenuItem key={directorID} value={directorID}>
                 {directorName}
               </MenuItem>
             ))}

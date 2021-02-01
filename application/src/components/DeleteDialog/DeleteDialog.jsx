@@ -9,11 +9,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import BlockIcon from '@material-ui/icons/Block';
 
-import withHocs from './MoviesDialogHoc';
-
-const MoviesDialog = ({ id, handleClose, deleteMovie, open }) => {
-  const handleDelete = () => {
-    deleteMovie(id);
+const DeleteDialog = ({ id, handleClose, handleDelete, open }) => {
+  const handleConfirm = () => {
+    handleDelete(id);
     handleClose();
   };
 
@@ -25,11 +23,11 @@ const MoviesDialog = ({ id, handleClose, deleteMovie, open }) => {
       open={open}
     >
       <DialogTitle id="alert-dialog-title">
-        Are you sire that you want to delete element?
+        Are you sure that you want to delete the element?
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          If you click &lsquo;Confirm&rsquo; this element will be removed from data base.
+          If you click &lsquo;Confirm&rsquo; this element will be removed from the database.
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -37,7 +35,7 @@ const MoviesDialog = ({ id, handleClose, deleteMovie, open }) => {
           <BlockIcon />
           Cancel
         </Button>
-        <Button autoFocus color="primary" onClick={handleDelete}>
+        <Button autoFocus color="primary" onClick={handleConfirm}>
           <DeleteForeverIcon />
           Confirm
         </Button>
@@ -46,18 +44,18 @@ const MoviesDialog = ({ id, handleClose, deleteMovie, open }) => {
   );
 };
 
-MoviesDialog.propTypes = {
+DeleteDialog.propTypes = {
   id: PropTypes.string,
   handleClose: PropTypes.func,
-  deleteMovie: PropTypes.func,
+  handleDelete: PropTypes.func,
   open: PropTypes.bool,
 };
 
-MoviesDialog.defaultProps = {
+DeleteDialog.defaultProps = {
   id: '',
   handleClose: () => {},
-  deleteMovie: () => {},
+  handleDelete: () => {},
   open: false,
 };
 
-export default withHocs(MoviesDialog);
+export default DeleteDialog;

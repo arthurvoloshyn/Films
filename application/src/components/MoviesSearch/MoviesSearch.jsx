@@ -17,7 +17,7 @@ const MoviesSearch = ({ classes, name, handleChange, handleSearch }) => (
       }}
       onChange={handleChange('name')}
       onKeyPress={handleSearch}
-      placeholder="Search…"
+      placeholder="Search..."
       value={name}
     />
   </div>

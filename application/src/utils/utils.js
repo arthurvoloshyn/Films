@@ -1,6 +1,5 @@
 import { directorsWithMoviesQuery, moviesQuery } from '../graphql/queries';
 
-// eslint-disable-next-line import/prefer-default-export
 export const mutationInstance = (variables, mutate) =>
   mutate({
     variables,
@@ -9,3 +8,9 @@ export const mutationInstance = (variables, mutate) =>
       { query: directorsWithMoviesQuery, variables: { name: '' } },
     ],
   });
+
+export const queryInstance = {
+  options: ({ name = '' }) => ({
+    variables: { name },
+  }),
+};
