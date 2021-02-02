@@ -1,14 +1,15 @@
-import React from 'react';
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
+import { directorsFormElementsList } from '../../constants/directors';
 import DirectorsTable from '../DirectorsTable/DirectorsTable';
-import DirectorsForm from '../DirectorsForm/DirectorsForm';
+import Form from '../Form/Form';
 
 import withHocs from './DirectorsHoc';
 
-class Directors extends React.Component {
+class Directors extends Component {
   state = {
     open: false,
     name: '',
@@ -37,15 +38,21 @@ class Directors extends React.Component {
 
   render() {
     const { name, age, id, open } = this.state;
-    const { classes } = this.props;
+    const { classes, addDirector, updateDirector } = this.props;
+
+    const formElementsList = directorsFormElementsList(name, age);
 
     return (
       <>
-        <DirectorsForm
+        <Form
+          formElementsList={formElementsList}
+          handleAdd={addDirector}
           handleChange={this.handleChange}
+          handleUpdate={updateDirector}
           onClose={this.handleClose}
           open={open}
-          selectedValue={{ name, age, id }}
+          selectedValue={{ id, name, age: +age }}
+          title="Director information"
         />
         <div className={classes.wrapper}>
           <DirectorsTable onClose={this.handleClose} onOpen={this.handleClickOpen} />
@@ -62,5 +69,11 @@ class Directors extends React.Component {
     );
   }
 }
+
+Directors.propTypes = {
+  classes: PropTypes.object.isRequired,
+  addDirector: PropTypes.func.isRequired,
+  updateDirector: PropTypes.func.isRequired,
+};
 
 export default withHocs(Directors);

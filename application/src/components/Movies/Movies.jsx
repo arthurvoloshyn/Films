@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
-import { moviesInitState } from '../../constants/movies';
+import {
+  moviesInitState,
+  moviesFormElementsList,
+  moviesFormCheckbox,
+} from '../../constants/movies';
 import MoviesTable from '../MoviesTable/MoviesTable';
-import MoviesForm from '../MoviesForm/MoviesForm';
+import Form from '../Form/Form';
 import withHocs from './MoviesHoc';
 
 class Movies extends Component {
@@ -20,8 +24,6 @@ class Movies extends Component {
 
   handleClose = () => this.setState(moviesInitState);
 
-  handleSelectChange = ({ target: { name, value } }) => this.setState({ [name]: value });
-
   handleChange = name => ({ target: { type, value, checked } }) => {
     const val = type === 'checkbox' ? checked : value;
 
@@ -30,23 +32,30 @@ class Movies extends Component {
 
   render() {
     const { id, name, genre, watched, rate, directorId, open } = this.state;
-    const { classes } = this.props;
+    const { classes, data: { directors = [] } = {}, addMovie, updateMovie } = this.props;
+
+    const formElementsList = moviesFormElementsList(name, genre, rate, { directorId, directors });
+    const formCheckbox = moviesFormCheckbox(watched);
 
     return (
       <>
-        <MoviesForm
+        <Form
+          formCheckbox={formCheckbox}
+          formElementsList={formElementsList}
+          handleAdd={addMovie}
           handleChange={this.handleChange}
-          handleSelectChange={this.handleSelectChange}
+          handleUpdate={updateMovie}
           onClose={this.handleClose}
           open={open}
           selectedValue={{
             id,
             name,
             genre,
-            watched,
-            rate,
+            watched: !!watched,
+            rate: +rate,
             directorId,
           }}
+          title="Movie information"
         />
         <div className={classes.wrapper}>
           <MoviesTable onOpen={this.handleClickOpen} />
@@ -66,6 +75,16 @@ class Movies extends Component {
 
 Movies.propTypes = {
   classes: PropTypes.object.isRequired,
+  data: PropTypes.shape({
+    directors: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+      }),
+    ),
+  }).isRequired,
+  addMovie: PropTypes.func.isRequired,
+  updateMovie: PropTypes.func.isRequired,
 };
 
 export default withHocs(Movies);
