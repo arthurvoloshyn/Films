@@ -13,7 +13,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
-import MoviesSearch from '../MoviesSearch/MoviesSearch';
+import Search from '../Search/Search';
 
 import withHocs from './DirectorsTableHoc';
 
@@ -76,11 +76,7 @@ class DirectorsTable extends React.Component {
     return (
       <>
         <Paper>
-          <MoviesSearch
-            handleChange={this.handleChange}
-            handleSearch={this.handleSearch}
-            name={name}
-          />
+          <Search handleChange={this.handleChange} handleSearch={this.handleSearch} name={name} />
         </Paper>
         <DeleteDialog
           handleClose={this.handleDialogClose}

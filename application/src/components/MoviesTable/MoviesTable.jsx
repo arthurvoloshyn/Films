@@ -16,14 +16,14 @@ import CreateIcon from '@material-ui/icons/Create';
 
 import { moviesTableHeadList } from '../../constants/movies';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
-import MoviesSearch from '../MoviesSearch/MoviesSearch';
+import Search from '../Search/Search';
 import withHocs from './MoviesTableHoc';
 
 class MoviesTable extends Component {
   state = {
     anchorEl: null,
     openDialog: false,
-    searchName: '',
+    name: '',
     data: {},
   };
 
@@ -31,11 +31,11 @@ class MoviesTable extends Component {
 
   handleSearch = ({ key }) => {
     const { data } = this.props;
-    const { searchName } = this.state;
+    const { name } = this.state;
 
     key === 'Enter' &&
       data.fetchMore({
-        variables: { name: searchName },
+        variables: { name },
         updateQuery: (_, { fetchMoreResult }) => fetchMoreResult,
       });
   };
@@ -66,14 +66,14 @@ class MoviesTable extends Component {
   };
 
   render() {
-    const { anchorEl, openDialog, data: activeElem, searchName } = this.state;
+    const { anchorEl, openDialog, data: activeElem, name: searchName } = this.state;
 
     const { classes, data: { movies = [] } = {}, deleteMovie } = this.props;
 
     return (
       <>
         <Paper>
-          <MoviesSearch
+          <Search
             handleChange={this.handleChange}
             handleSearch={this.handleSearch}
             name={searchName}

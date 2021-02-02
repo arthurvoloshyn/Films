@@ -28,8 +28,6 @@ class Movies extends Component {
     this.setState({ [name]: val });
   };
 
-  handleAddMovie = () => this.handleClickOpen();
-
   render() {
     const { id, name, genre, watched, rate, directorId, open } = this.state;
     const { classes } = this.props;
@@ -56,7 +54,7 @@ class Movies extends Component {
             aria-label="Add"
             className={classes.fab}
             color="primary"
-            onClick={this.handleAddMovie}
+            onClick={this.handleClickOpen}
           >
             <AddIcon />
           </Fab>
