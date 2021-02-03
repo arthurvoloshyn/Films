@@ -6,7 +6,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Checkbox from '@material-ui/core/Checkbox';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -14,9 +13,10 @@ import Menu from '@material-ui/core/Menu';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
-import { isNumber, isObjectOrNull, isBoolean, removeObjPropImmutably } from '../../utils/utils';
+import { isNumber, isString, removeObjPropImmutably } from '../../utils/utils';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import Search from '../Search/Search';
+import SearchTableCellData from '../SearchTableCellData/SearchTableCellData';
 import withHocs from './SearchTableHoc';
 
 class SearchTable extends Component {
@@ -108,33 +108,16 @@ class SearchTable extends Component {
                     <TableCell component="th" scope="row">
                       {name}
                     </TableCell>
-                    {tableBodyElPropsValues.map((tableBodyElPropValue, i) => (
+                    {tableBodyElPropsValues.map(tableBodyElPropValue => (
                       <TableCell
-                        key={`tableBodyCell_${i}`}
+                        key={
+                          isString(tableBodyElPropValue)
+                            ? tableBodyElPropValue
+                            : `tableBodyCell_${tableBodyElPropValue}`
+                        }
                         align={isNumber(tableBodyElPropValue) ? 'right' : 'left'}
                       >
-                        {isBoolean(tableBodyElPropValue) ? (
-                          <Checkbox checked={tableBodyElPropValue} disabled />
-                        ) : Array.isArray(tableBodyElPropValue) ? (
-                          <>
-                            {tableBodyElPropValue.length ? (
-                              <>
-                                {tableBodyElPropValue.map(({ name }, key) => (
-                                  <div key={name}>
-                                    {`${key + 1}. `}
-                                    {name}
-                                  </div>
-                                ))}
-                              </>
-                            ) : (
-                              'No data'
-                            )}
-                          </>
-                        ) : isObjectOrNull(tableBodyElPropValue) ? (
-                          tableBodyElPropValue?.name || 'No data'
-                        ) : (
-                          tableBodyElPropValue
-                        )}
+                        <SearchTableCellData cellData={tableBodyElPropValue} />
                       </TableCell>
                     ))}
                     <TableCell align="right">

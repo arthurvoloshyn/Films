@@ -58,6 +58,15 @@
     "react/jsx-indent-props": "error",
     "react/jsx-key": "error",
     "react/jsx-max-props-per-line": "error",
+    "react/jsx-wrap-multilines": ["error", {
+      "declaration": "parens",
+      "assignment": "parens",
+      "return": "parens",
+      "arrow": "parens",
+      "condition": "parens",
+      "logical": "parens",
+      "prop": "ignore"
+    }],
     "react/jsx-no-literals": "off",
     "react/jsx-no-undef": "error",
     "react/jsx-pascal-case": "error",
