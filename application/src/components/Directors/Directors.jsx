@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
-import { directorsFormElementsList } from '../../constants/directors';
-import DirectorsTable from '../DirectorsTable/DirectorsTable';
+import { directorsFormElementsList, directorsTableHeadList } from '../../constants/directors';
+import SearchTable from '../SearchTable/SearchTable';
 import Form from '../Form/Form';
 
 import withHocs from './DirectorsHoc';
@@ -38,7 +38,13 @@ class Directors extends Component {
 
   render() {
     const { name, age, id, open } = this.state;
-    const { classes, addDirector, updateDirector } = this.props;
+    const {
+      classes,
+      directorsWithMoviesQuery: { directors = [], fetchMore },
+      addDirector,
+      updateDirector,
+      deleteDirector,
+    } = this.props;
 
     const formElementsList = directorsFormElementsList(name, age);
 
@@ -55,7 +61,13 @@ class Directors extends Component {
           title="Director information"
         />
         <div className={classes.wrapper}>
-          <DirectorsTable onClose={this.handleClose} onOpen={this.handleClickOpen} />
+          <SearchTable
+            fetchMore={fetchMore}
+            handleDelete={deleteDirector}
+            onOpen={this.handleClickOpen}
+            tableBodyList={directors}
+            tableHeadList={directorsTableHeadList}
+          />
           <Fab
             aria-label="Add"
             className={classes.fab}
@@ -74,6 +86,23 @@ Directors.propTypes = {
   classes: PropTypes.object.isRequired,
   addDirector: PropTypes.func.isRequired,
   updateDirector: PropTypes.func.isRequired,
+  deleteDirector: PropTypes.func.isRequired,
+  directorsWithMoviesQuery: PropTypes.shape({
+    directors: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+        age: PropTypes.number,
+        movies: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.string,
+            name: PropTypes.string,
+          }),
+        ),
+      }),
+    ),
+    fetchMore: PropTypes.func,
+  }).isRequired,
 };
 
 export default withHocs(Directors);

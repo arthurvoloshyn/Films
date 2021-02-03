@@ -14,12 +14,12 @@ import Menu from '@material-ui/core/Menu';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
-import { moviesTableHeadList } from '../../constants/movies';
+import { isNumber, isObjectOrNull, isBoolean, removeObjPropImmutably } from '../../utils/utils';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import Search from '../Search/Search';
-import withHocs from './MoviesTableHoc';
+import withHocs from './SearchTableHoc';
 
-class MoviesTable extends Component {
+class SearchTable extends Component {
   state = {
     anchorEl: null,
     openDialog: false,
@@ -30,11 +30,11 @@ class MoviesTable extends Component {
   handleChange = name => ({ target: { value } }) => this.setState({ [name]: value });
 
   handleSearch = ({ key }) => {
-    const { data } = this.props;
+    const { fetchMore } = this.props;
     const { name } = this.state;
 
     key === 'Enter' &&
-      data.fetchMore({
+      fetchMore({
         variables: { name },
         updateQuery: (_, { fetchMoreResult }) => fetchMoreResult,
       });
@@ -68,7 +68,7 @@ class MoviesTable extends Component {
   render() {
     const { anchorEl, openDialog, data: activeElem, name: searchName } = this.state;
 
-    const { classes, data: { movies = [] } = {}, deleteMovie } = this.props;
+    const { classes, tableBodyList, handleDelete, tableHeadList } = this.props;
 
     return (
       <>
@@ -81,7 +81,7 @@ class MoviesTable extends Component {
         </Paper>
         <DeleteDialog
           handleClose={this.handleDialogClose}
-          handleDelete={deleteMovie}
+          handleDelete={handleDelete}
           id={activeElem.id}
           open={openDialog}
         />
@@ -89,29 +89,50 @@ class MoviesTable extends Component {
           <Table>
             <TableHead>
               <TableRow>
-                {moviesTableHeadList.map(({ title, align }, i) => (
-                  <TableCell key={title || `moviesTableHeadCell_${i}`} align={align}>
+                {tableHeadList.map(({ title, align }, i) => (
+                  <TableCell key={title || `tableHeadCell_${i}`} align={align}>
                     {title}
                   </TableCell>
                 ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {movies.map(movie => {
-                const handleClick = e => this.handleClick(e, movie);
-                const { id, name, genre, rate, director, watched } = movie;
+              {tableBodyList.map(tableBodyEl => {
+                const handleClick = e => this.handleClick(e, tableBodyEl);
+                const { id, name, ...tableBodyElProps } = tableBodyEl;
+                const newTableBodyElProps = removeObjPropImmutably(tableBodyElProps, '__typename');
+                const tableBodyElPropsValues = Object.values(newTableBodyElProps);
 
                 return (
                   <TableRow key={id}>
                     <TableCell component="th" scope="row">
                       {name}
                     </TableCell>
-                    <TableCell>{genre}</TableCell>
-                    <TableCell align="right">{rate}</TableCell>
-                    <TableCell>{director?.name || 'No director'}</TableCell>
-                    <TableCell>
-                      <Checkbox checked={watched} disabled />
-                    </TableCell>
+                    {tableBodyElPropsValues.map((tableBodyElPropValue, i) => (
+                      <TableCell
+                        key={`tableBodyCell_${i}`}
+                        align={isNumber(tableBodyElPropValue) ? 'right' : 'left'}
+                      >
+                        {isBoolean(tableBodyElPropValue) ? (
+                          <Checkbox checked={tableBodyElPropValue} disabled />
+                        ) : Array.isArray(tableBodyElPropValue) ? (
+                          <>
+                            {tableBodyElPropValue.length
+                              ? tableBodyElPropValue.map(({ name }, key) => (
+                                  <div key={name}>
+                                    {`${key + 1}. `}
+                                    {name}
+                                  </div>
+                                ))
+                              : 'No data'}
+                          </>
+                        ) : isObjectOrNull(tableBodyElPropValue) ? (
+                          tableBodyElPropValue?.name || 'No data'
+                        ) : (
+                          tableBodyElPropValue
+                        )}
+                      </TableCell>
+                    ))}
                     <TableCell align="right">
                       <>
                         <IconButton color="inherit" onClick={handleClick}>
@@ -145,30 +166,30 @@ class MoviesTable extends Component {
   }
 }
 
-MoviesTable.propTypes = {
+SearchTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  data: PropTypes.shape({
-    movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        name: PropTypes.string,
-        genre: PropTypes.string,
-        rate: PropTypes.number,
-        watched: PropTypes.bool,
-        director: PropTypes.shape({
-          name: PropTypes.string,
-        }),
-      }),
-    ),
-    fetchMore: PropTypes.func,
-  }).isRequired,
   onOpen: PropTypes.func,
-  deleteMovie: PropTypes.func,
+  handleDelete: PropTypes.func,
+  tableBodyList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  ),
+  tableHeadList: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      align: PropTypes.string,
+    }),
+  ),
+  fetchMore: PropTypes.func,
 };
 
-MoviesTable.defaultProps = {
+SearchTable.defaultProps = {
   onOpen: () => {},
-  deleteMovie: () => {},
+  handleDelete: () => {},
+  tableBodyList: [],
+  tableHeadList: [],
+  fetchMore: () => {},
 };
 
-export default withHocs(MoviesTable);
+export default withHocs(SearchTable);

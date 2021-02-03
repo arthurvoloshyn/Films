@@ -1,9 +1,9 @@
 export const moviesTableHeadList = [
   { title: 'Name' },
   { title: 'Genre' },
+  { title: 'Watched' },
   { title: 'Rate', align: 'right' },
   { title: 'Director' },
-  { title: 'Watched' },
   { align: 'right' },
 ];
 

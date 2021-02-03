@@ -7,8 +7,9 @@ import {
   moviesInitState,
   moviesFormElementsList,
   moviesFormCheckbox,
+  moviesTableHeadList,
 } from '../../constants/movies';
-import MoviesTable from '../MoviesTable/MoviesTable';
+import SearchTable from '../SearchTable/SearchTable';
 import Form from '../Form/Form';
 import withHocs from './MoviesHoc';
 
@@ -32,7 +33,14 @@ class Movies extends Component {
 
   render() {
     const { id, name, genre, watched, rate, directorId, open } = this.state;
-    const { classes, data: { directors = [] } = {}, addMovie, updateMovie } = this.props;
+    const {
+      classes,
+      directorsQuery: { directors = [] },
+      addMovie,
+      updateMovie,
+      deleteMovie,
+      moviesQuery: { movies = [], fetchMore },
+    } = this.props;
 
     const formElementsList = moviesFormElementsList(name, genre, rate, { directorId, directors });
     const formCheckbox = moviesFormCheckbox(watched);
@@ -58,7 +66,13 @@ class Movies extends Component {
           title="Movie information"
         />
         <div className={classes.wrapper}>
-          <MoviesTable onOpen={this.handleClickOpen} />
+          <SearchTable
+            fetchMore={fetchMore}
+            handleDelete={deleteMovie}
+            onOpen={this.handleClickOpen}
+            tableBodyList={movies}
+            tableHeadList={moviesTableHeadList}
+          />
           <Fab
             aria-label="Add"
             className={classes.fab}
@@ -75,16 +89,33 @@ class Movies extends Component {
 
 Movies.propTypes = {
   classes: PropTypes.object.isRequired,
-  data: PropTypes.shape({
+  directorsQuery: PropTypes.shape({
     directors: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
         name: PropTypes.string,
       }),
     ),
+    fetchMore: PropTypes.func,
+  }).isRequired,
+  moviesQuery: PropTypes.shape({
+    movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+        genre: PropTypes.string,
+        rate: PropTypes.number,
+        watched: PropTypes.bool,
+        director: PropTypes.shape({
+          name: PropTypes.string,
+        }),
+      }),
+    ),
+    fetchMore: PropTypes.func,
   }).isRequired,
   addMovie: PropTypes.func.isRequired,
   updateMovie: PropTypes.func.isRequired,
+  deleteMovie: PropTypes.func.isRequired,
 };
 
 export default withHocs(Movies);
