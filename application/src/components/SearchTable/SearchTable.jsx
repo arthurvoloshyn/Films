@@ -117,14 +117,18 @@ class SearchTable extends Component {
                           <Checkbox checked={tableBodyElPropValue} disabled />
                         ) : Array.isArray(tableBodyElPropValue) ? (
                           <>
-                            {tableBodyElPropValue.length
-                              ? tableBodyElPropValue.map(({ name }, key) => (
+                            {tableBodyElPropValue.length ? (
+                              <>
+                                {tableBodyElPropValue.map(({ name }, key) => (
                                   <div key={name}>
                                     {`${key + 1}. `}
                                     {name}
                                   </div>
-                                ))
-                              : 'No data'}
+                                ))}
+                              </>
+                            ) : (
+                              'No data'
+                            )}
                           </>
                         ) : isObjectOrNull(tableBodyElPropValue) ? (
                           tableBodyElPropValue?.name || 'No data'

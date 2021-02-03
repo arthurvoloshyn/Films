@@ -3,38 +3,27 @@ import PropTypes from 'prop-types';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
-import { directorsFormElementsList, directorsTableHeadList } from '../../constants/directors';
+import {
+  directorsInitState,
+  directorsFormElementsList,
+  directorsTableHeadList,
+} from '../../constants/directors';
 import SearchTable from '../SearchTable/SearchTable';
 import Form from '../Form/Form';
-
 import withHocs from './DirectorsHoc';
 
 class Directors extends Component {
-  state = {
-    open: false,
-    name: '',
-    age: 0,
-  };
+  state = directorsInitState;
 
-  handleClickOpen = data => {
+  handleClickOpen = data =>
     this.setState({
       ...data,
       open: true,
     });
-  };
 
-  handleClose = () => {
-    this.setState({
-      name: '',
-      age: 0,
-      id: null,
-      open: false,
-    });
-  };
+  handleClose = () => this.setState(directorsInitState);
 
-  handleChange = name => ({ target }) => {
-    this.setState({ [name]: target.value });
-  };
+  handleChange = name => ({ target }) => this.setState({ [name]: target.value });
 
   render() {
     const { name, age, id, open } = this.state;
@@ -72,7 +61,7 @@ class Directors extends Component {
             aria-label="Add"
             className={classes.fab}
             color="primary"
-            onClick={() => this.handleClickOpen(null)}
+            onClick={this.handleClickOpen}
           >
             <AddIcon />
           </Fab>
