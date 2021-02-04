@@ -10,7 +10,14 @@ export const moviesTableHeadList = [
 export const moviesFormElementsList = (movieName, genre, rate, { directorId, directors }) => [
   { id: 'outlined-name', label: 'Name', name: 'name', required: true, value: movieName },
   { id: 'outlined-genre', label: 'Genre', name: 'genre', required: true, value: genre },
-  { id: 'outlined-rate', label: 'Rate', name: 'rate', required: false, value: rate },
+  {
+    id: 'outlined-rate',
+    label: 'Rate',
+    name: 'rate',
+    required: false,
+    type: 'number',
+    value: rate,
+  },
   {
     id: 'outlined-director',
     label: 'Director',

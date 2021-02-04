@@ -52,6 +52,7 @@ const Form = ({
             value,
             labelWidth,
             options,
+            type,
           }) => (
             <Fragment key={formElementId}>
               {options ? (
@@ -81,6 +82,7 @@ const Form = ({
                   margin="normal"
                   onChange={handleChange(formElementName)}
                   required={required}
+                  type={type || 'text'}
                   value={value}
                   variant="outlined"
                 />
@@ -137,6 +139,7 @@ Form.propTypes = {
       label: PropTypes.string,
       required: PropTypes.bool,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      type: PropTypes.string,
       labelWidth: PropTypes.number,
       options: PropTypes.arrayOf(
         PropTypes.shape({

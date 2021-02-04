@@ -1,6 +1,5 @@
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
-import { withStyles } from '@material-ui/core/styles';
 
 import { mutationInstance, queryInstance } from '../../utils/utils';
 import { directorsWithMoviesQuery } from '../../graphql/queries';
@@ -9,7 +8,6 @@ import {
   deleteDirectorMutation,
   updateDirectorMutation,
 } from '../../graphql/mutations';
-import styles from './styles';
 
 const withGraphQL = compose(
   graphql(addDirectorMutation, {
@@ -33,4 +31,4 @@ const withGraphQL = compose(
   }),
 );
 
-export default compose(withStyles(styles), withGraphQL);
+export default withGraphQL;

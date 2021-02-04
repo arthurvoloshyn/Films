@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -6,65 +6,39 @@ import {
   directorsFormElementsList,
   directorsTableHeadList,
 } from '../../constants/directors';
-import SearchTable from '../SearchTable/SearchTable';
-import Form from '../Form/Form';
-import AddFab from '../AddFab/AddFab';
+import NavigationTable from '../NavigationTable/NavigationTable';
 import withHocs from './DirectorsHoc';
 
-class Directors extends Component {
-  state = directorsInitState;
+const Directors = ({
+  directorsWithMoviesQuery: { directors = [], fetchMore },
+  addDirector,
+  updateDirector,
+  deleteDirector,
+}) => {
+  const formProps = {
+    handleAdd: addDirector,
+    handleUpdate: updateDirector,
+    getFormElementsList: directorsFormElementsList,
+    title: 'Movie information',
+  };
 
-  handleClickOpen = data =>
-    this.setState({
-      ...data,
-      open: true,
-    });
+  const searchTableProps = {
+    fetchMore,
+    handleDelete: deleteDirector,
+    tableBodyList: directors,
+    tableHeadList: directorsTableHeadList,
+  };
 
-  handleClose = () => this.setState(directorsInitState);
-
-  handleChange = name => ({ target }) => this.setState({ [name]: target.value });
-
-  render() {
-    const { name, age, id, open } = this.state;
-    const {
-      classes,
-      directorsWithMoviesQuery: { directors = [], fetchMore },
-      addDirector,
-      updateDirector,
-      deleteDirector,
-    } = this.props;
-
-    const formElementsList = directorsFormElementsList(name, age);
-
-    return (
-      <>
-        <Form
-          formElementsList={formElementsList}
-          handleAdd={addDirector}
-          handleChange={this.handleChange}
-          handleUpdate={updateDirector}
-          onClose={this.handleClose}
-          open={open}
-          selectedValue={{ id, name, age: +age }}
-          title="Director information"
-        />
-        <div className={classes.wrapper}>
-          <SearchTable
-            fetchMore={fetchMore}
-            handleDelete={deleteDirector}
-            onOpen={this.handleClickOpen}
-            tableBodyList={directors}
-            tableHeadList={directorsTableHeadList}
-          />
-          <AddFab handleClickOpen={this.handleClickOpen} />
-        </div>
-      </>
-    );
-  }
-}
+  return (
+    <NavigationTable
+      formProps={formProps}
+      initState={directorsInitState}
+      searchTableProps={searchTableProps}
+    />
+  );
+};
 
 Directors.propTypes = {
-  classes: PropTypes.object.isRequired,
   addDirector: PropTypes.func.isRequired,
   updateDirector: PropTypes.func.isRequired,
   deleteDirector: PropTypes.func.isRequired,

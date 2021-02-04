@@ -58,7 +58,7 @@ class NavigationTable extends Component {
         ]
       : [state.name, state.age];
     const formElementsList = getFormElementsList(...formElementsListParams);
-    const formCheckbox = isMovies && getFormCheckbox(state.watched);
+    const formCheckbox = isMovies ? getFormCheckbox?.(state.watched) : null;
 
     return (
       <>
