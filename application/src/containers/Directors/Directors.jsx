@@ -6,7 +6,7 @@ import {
   directorsFormElementsList,
   directorsTableHeadList,
 } from '../../constants/directors';
-import NavigationTable from '../NavigationTable/NavigationTable';
+import NavigationTable from '../../components/NavigationTable/NavigationTable';
 import withHocs from './DirectorsHoc';
 
 const Directors = ({

@@ -7,7 +7,7 @@ import {
   moviesFormCheckbox,
   moviesTableHeadList,
 } from '../../constants/movies';
-import NavigationTable from '../NavigationTable/NavigationTable';
+import NavigationTable from '../../components/NavigationTable/NavigationTable';
 import withHocs from './MoviesHoc';
 
 const Movies = ({
