@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 
 import {
   moviesInitState,
@@ -11,6 +9,7 @@ import {
 } from '../../constants/movies';
 import SearchTable from '../SearchTable/SearchTable';
 import Form from '../Form/Form';
+import AddFab from '../AddFab/AddFab';
 import withHocs from './MoviesHoc';
 
 class Movies extends Component {
@@ -73,14 +72,7 @@ class Movies extends Component {
             tableBodyList={movies}
             tableHeadList={moviesTableHeadList}
           />
-          <Fab
-            aria-label="Add"
-            className={classes.fab}
-            color="primary"
-            onClick={this.handleClickOpen}
-          >
-            <AddIcon />
-          </Fab>
+          <AddFab handleClickOpen={this.handleClickOpen} />
         </div>
       </>
     );

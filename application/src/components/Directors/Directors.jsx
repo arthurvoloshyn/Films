@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 
 import {
   directorsInitState,
@@ -10,6 +8,7 @@ import {
 } from '../../constants/directors';
 import SearchTable from '../SearchTable/SearchTable';
 import Form from '../Form/Form';
+import AddFab from '../AddFab/AddFab';
 import withHocs from './DirectorsHoc';
 
 class Directors extends Component {
@@ -57,14 +56,7 @@ class Directors extends Component {
             tableBodyList={directors}
             tableHeadList={directorsTableHeadList}
           />
-          <Fab
-            aria-label="Add"
-            className={classes.fab}
-            color="primary"
-            onClick={this.handleClickOpen}
-          >
-            <AddIcon />
-          </Fab>
+          <AddFab handleClickOpen={this.handleClickOpen} />
         </div>
       </>
     );
