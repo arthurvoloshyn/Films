@@ -160,6 +160,7 @@ SearchTable.propTypes = {
   tableBodyList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
+      name: PropTypes.string,
     }),
   ),
   tableHeadList: PropTypes.arrayOf(

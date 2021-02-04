@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -7,80 +7,43 @@ import {
   moviesFormCheckbox,
   moviesTableHeadList,
 } from '../../constants/movies';
-import SearchTable from '../SearchTable/SearchTable';
-import Form from '../Form/Form';
-import AddFab from '../AddFab/AddFab';
+import NavigationTable from '../NavigationTable/NavigationTable';
 import withHocs from './MoviesHoc';
 
-class Movies extends Component {
-  state = moviesInitState;
-
-  handleClickOpen = (data = {}) =>
-    this.setState({
-      ...data,
-      open: true,
-      directorId: data.director?.id || '',
-    });
-
-  handleClose = () => this.setState(moviesInitState);
-
-  handleChange = name => ({ target: { type, value, checked } }) => {
-    const val = type === 'checkbox' ? checked : value;
-
-    this.setState({ [name]: val });
+const Movies = ({
+  directorsQuery: { directors = [] },
+  addMovie,
+  updateMovie,
+  deleteMovie,
+  moviesQuery: { movies = [], fetchMore },
+}) => {
+  const formProps = {
+    handleAdd: addMovie,
+    handleUpdate: updateMovie,
+    getFormElementsList: moviesFormElementsList,
+    getFormCheckbox: moviesFormCheckbox,
+    formElementSelectOptions: directors,
+    title: 'Movie information',
   };
 
-  render() {
-    const { id, name, genre, watched, rate, directorId, open } = this.state;
-    const {
-      classes,
-      directorsQuery: { directors = [] },
-      addMovie,
-      updateMovie,
-      deleteMovie,
-      moviesQuery: { movies = [], fetchMore },
-    } = this.props;
+  const searchTableProps = {
+    fetchMore,
+    handleDelete: deleteMovie,
+    tableBodyList: movies,
+    tableHeadList: moviesTableHeadList,
+  };
 
-    const formElementsList = moviesFormElementsList(name, genre, rate, { directorId, directors });
-    const formCheckbox = moviesFormCheckbox(watched);
-
-    return (
-      <>
-        <Form
-          formCheckbox={formCheckbox}
-          formElementsList={formElementsList}
-          handleAdd={addMovie}
-          handleChange={this.handleChange}
-          handleUpdate={updateMovie}
-          onClose={this.handleClose}
-          open={open}
-          selectedValue={{
-            id,
-            name,
-            genre,
-            watched: !!watched,
-            rate: +rate,
-            directorId,
-          }}
-          title="Movie information"
-        />
-        <div className={classes.wrapper}>
-          <SearchTable
-            fetchMore={fetchMore}
-            handleDelete={deleteMovie}
-            onOpen={this.handleClickOpen}
-            tableBodyList={movies}
-            tableHeadList={moviesTableHeadList}
-          />
-          <AddFab handleClickOpen={this.handleClickOpen} />
-        </div>
-      </>
-    );
-  }
-}
+  return (
+    <NavigationTable
+      formProps={formProps}
+      initState={moviesInitState}
+      isMovies
+      searchTableProps={searchTableProps}
+    />
+  );
+};
 
 Movies.propTypes = {
-  classes: PropTypes.object.isRequired,
   directorsQuery: PropTypes.shape({
     directors: PropTypes.arrayOf(
       PropTypes.shape({

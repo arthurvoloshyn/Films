@@ -46,7 +46,8 @@
       "ObjectExpression": 1,
       "ImportDeclaration": 1,
       "flatTernaryExpressions": false,
-      "ignoreComments": false
+      "ignoreComments": false,
+      "offsetTernaryExpressions": true
     }],
     "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true, "allowTaggedTemplates": true }],
 
@@ -96,6 +97,7 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/state-in-constructor": "off",
     "react/button-has-type": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/prop-types": "error",
 
     "prettier/prettier": "error",
