@@ -1,4 +1,4 @@
-const { GraphQLString, GraphQLInt, GraphQLBoolean, GraphQLNonNull } = require('graphql');
+const { GraphQLString, GraphQLInt, GraphQLBoolean, GraphQLID, GraphQLNonNull } = require('graphql');
 
 const schemaFields = {
   movie: {
@@ -21,6 +21,19 @@ const schemaFields = {
     },
     age: {
       type: new GraphQLNonNull(GraphQLInt),
+    },
+  },
+  fieldId: {
+    id: { type: GraphQLID },
+  },
+  fieldDirectorId: {
+    directorId: {
+      type: new GraphQLNonNull(GraphQLID),
+    },
+  },
+  fieldName: {
+    name: {
+      type: GraphQLString,
     },
   },
 };

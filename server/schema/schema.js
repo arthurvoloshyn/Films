@@ -1,10 +1,4 @@
-const {
-  GraphQLObjectType,
-  GraphQLSchema,
-  GraphQLID,
-  GraphQLList,
-  GraphQLNonNull,
-} = require('graphql');
+const { GraphQLObjectType, GraphQLSchema, GraphQLList } = require('graphql');
 
 const schemaFields = require('../constants/schemaFields');
 const Movies = require('../models/movie');
@@ -18,7 +12,7 @@ const getMutationInstance = require('../utils/getMutationInstance');
 const MovieType = new GraphQLObjectType({
   name: 'Movie',
   fields: () => ({
-    ...getSchemaFields(schemaFields.movie, true),
+    ...getSchemaFields(schemaFields.movie, { withId: true }),
     director: {
       type: DirectorType,
       resolve: movieResolver,
@@ -29,7 +23,7 @@ const MovieType = new GraphQLObjectType({
 const DirectorType = new GraphQLObjectType({
   name: 'Director',
   fields: () => ({
-    ...getSchemaFields(schemaFields.director, true),
+    ...getSchemaFields(schemaFields.director, { withId: true }),
     movies: {
       type: new GraphQLList(MovieType),
       resolve: directorResolver,
@@ -46,25 +40,23 @@ const Mutation = new GraphQLObjectType({
       Directors,
       getSchemaFields(schemaFields.director),
     ),
-    addMovie: getMutationInstance.add(MovieType, Movies, {
-      ...getSchemaFields(schemaFields.movie),
-      directorId: {
-        type: new GraphQLNonNull(GraphQLID),
-      },
-    }),
+    addMovie: getMutationInstance.add(
+      MovieType,
+      Movies,
+      getSchemaFields(schemaFields.movie, { withDirectorId: true }),
+    ),
     deleteDirector: getMutationInstance.delete(DirectorType, Directors),
     deleteMovie: getMutationInstance.delete(MovieType, Movies),
     updateDirector: getMutationInstance.update(
       DirectorType,
       Directors,
-      getSchemaFields(schemaFields.director, true),
+      getSchemaFields(schemaFields.director, { withId: true }),
     ),
-    updateMovie: getMutationInstance.update(MovieType, Movies, {
-      ...getSchemaFields(schemaFields.movie, true),
-      directorId: {
-        type: new GraphQLNonNull(GraphQLID),
-      },
-    }),
+    updateMovie: getMutationInstance.update(
+      MovieType,
+      Movies,
+      getSchemaFields(schemaFields.movie, { withId: true, withDirectorId: true }),
+    ),
   },
 });
 

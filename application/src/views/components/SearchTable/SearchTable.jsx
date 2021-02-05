@@ -14,6 +14,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
 import { isNumber, isString, removeObjPropImmutably } from '../../../utils/helpers';
+import { fetchMoreParamsInstance } from '../../../utils/graphql';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import Search from '../Search/Search';
 import SearchTableCellData from '../SearchTableCellData/SearchTableCellData';
@@ -33,11 +34,9 @@ class SearchTable extends Component {
     const { fetchMore } = this.props;
     const { name } = this.state;
 
-    key === 'Enter' &&
-      fetchMore({
-        variables: { name },
-        updateQuery: (_, { fetchMoreResult }) => fetchMoreResult,
-      });
+    const fetchMoreParams = fetchMoreParamsInstance({ name });
+
+    key === 'Enter' && fetchMore(fetchMoreParams);
   };
 
   handleDialogOpen = () => this.setState({ openDialog: true });

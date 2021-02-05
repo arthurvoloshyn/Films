@@ -1,5 +1,4 @@
-const { GraphQLID } = require('graphql');
-
+const schemaFields = require('../constants/schemaFields');
 const { addResolver, deleteResolver, updateResolver } = require('../resolvers');
 
 const getMutationInstance = {
@@ -10,11 +9,7 @@ const getMutationInstance = {
   }),
   delete: (Schema, Model) => ({
     type: Schema,
-    args: {
-      id: {
-        type: GraphQLID,
-      },
-    },
+    args: schemaFields.fieldId,
     resolve: deleteResolver(Model),
   }),
   update: (Schema, Model, args) => ({

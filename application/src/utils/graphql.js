@@ -14,3 +14,8 @@ export const getQueryInstance = {
     variables: { name },
   }),
 };
+
+export const fetchMoreParamsInstance = variables => ({
+  variables,
+  updateQuery: (_, { fetchMoreResult }) => fetchMoreResult,
+});

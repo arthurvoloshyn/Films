@@ -1,10 +1,12 @@
-const { GraphQLID } = require('graphql');
+const { schemaFields } = require('../constants/schemaFields');
 
-const getSchemaFields = (fields, withId) => {
-  const fieldOptions = withId && { id: { type: GraphQLID } };
+const getSchemaFields = (fields, { withId, withDirectorId } = {}) => {
+  const fieldsOptionsWithId = withId && { ...schemaFields.fieldId };
+  const fieldsOptionsWithDirectorId = withDirectorId && { ...schemaFields.fieldDirectorId };
 
   return {
-    ...fieldOptions,
+    ...fieldsOptionsWithId,
+    ...fieldsOptionsWithDirectorId,
     ...fields,
   };
 };
