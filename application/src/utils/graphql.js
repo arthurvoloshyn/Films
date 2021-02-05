@@ -1,6 +1,6 @@
 import { directorsWithMoviesQuery, moviesQuery } from '../graphql/queries';
 
-export const mutationInstance = (variables, mutate) =>
+export const getMutationInstance = (variables, mutate) =>
   mutate({
     variables,
     refetchQueries: [
@@ -9,7 +9,7 @@ export const mutationInstance = (variables, mutate) =>
     ],
   });
 
-export const queryInstance = {
+export const getQueryInstance = {
   options: ({ name = '' }) => ({
     variables: { name },
   }),

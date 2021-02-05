@@ -1,7 +1,7 @@
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 
-import { mutationInstance, queryInstance } from '../../../utils/graphql';
+import { getMutationInstance, getQueryInstance } from '../../../utils/graphql';
 import { directorsQuery, moviesQuery } from '../../../graphql/queries';
 import {
   addMovieMutation,
@@ -12,25 +12,25 @@ import {
 const withGraphQL = compose(
   graphql(addMovieMutation, {
     props: ({ mutate }) => ({
-      addMovie: movie => mutationInstance(movie, mutate),
+      addMovie: movie => getMutationInstance(movie, mutate),
     }),
   }),
   graphql(updateMovieMutation, {
     props: ({ mutate }) => ({
-      updateMovie: movie => mutationInstance(movie, mutate),
+      updateMovie: movie => getMutationInstance(movie, mutate),
     }),
   }),
   graphql(deleteMovieMutation, {
     props: ({ mutate }) => ({
-      deleteMovie: id => mutationInstance({ id }, mutate),
+      deleteMovie: id => getMutationInstance({ id }, mutate),
     }),
   }),
   graphql(moviesQuery, {
-    ...queryInstance,
+    ...getQueryInstance,
     name: 'moviesQuery',
   }),
   graphql(directorsQuery, {
-    ...queryInstance,
+    ...getQueryInstance,
     name: 'directorsQuery',
   }),
 );

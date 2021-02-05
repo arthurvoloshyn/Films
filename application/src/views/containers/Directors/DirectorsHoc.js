@@ -1,7 +1,7 @@
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 
-import { mutationInstance, queryInstance } from '../../../utils/graphql';
+import { getMutationInstance, getQueryInstance } from '../../../utils/graphql';
 import { directorsWithMoviesQuery } from '../../../graphql/queries';
 import {
   addDirectorMutation,
@@ -12,21 +12,21 @@ import {
 const withGraphQL = compose(
   graphql(addDirectorMutation, {
     props: ({ mutate }) => ({
-      addDirector: director => mutationInstance(director, mutate),
+      addDirector: director => getMutationInstance(director, mutate),
     }),
   }),
   graphql(updateDirectorMutation, {
     props: ({ mutate }) => ({
-      updateDirector: director => mutationInstance(director, mutate),
+      updateDirector: director => getMutationInstance(director, mutate),
     }),
   }),
   graphql(deleteDirectorMutation, {
     props: ({ mutate }) => ({
-      deleteDirector: id => mutationInstance({ id }, mutate),
+      deleteDirector: id => getMutationInstance({ id }, mutate),
     }),
   }),
   graphql(directorsWithMoviesQuery, {
-    ...queryInstance,
+    ...getQueryInstance,
     name: 'directorsWithMoviesQuery',
   }),
 );
