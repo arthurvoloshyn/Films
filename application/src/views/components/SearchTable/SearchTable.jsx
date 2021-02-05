@@ -13,7 +13,7 @@ import Menu from '@material-ui/core/Menu';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
-import { isNumber, isString, removeObjPropImmutably } from '../../utils/utils';
+import { isNumber, isString, removeObjPropImmutably } from '../../../utils/utils';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import Search from '../Search/Search';
 import SearchTableCellData from '../SearchTableCellData/SearchTableCellData';

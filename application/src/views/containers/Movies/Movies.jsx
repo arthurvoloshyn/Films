@@ -6,7 +6,7 @@ import {
   moviesFormElementsList,
   moviesFormCheckbox,
   moviesTableHeadList,
-} from '../../constants/movies';
+} from '../../../constants/movies';
 import NavigationTable from '../../components/NavigationTable/NavigationTable';
 import withHocs from './MoviesHoc';
 

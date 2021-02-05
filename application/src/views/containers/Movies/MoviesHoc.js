@@ -1,13 +1,13 @@
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 
-import { mutationInstance, queryInstance } from '../../utils/utils';
-import { directorsQuery, moviesQuery } from '../../graphql/queries';
+import { mutationInstance, queryInstance } from '../../../utils/utils';
+import { directorsQuery, moviesQuery } from '../../../graphql/queries';
 import {
   addMovieMutation,
   deleteMovieMutation,
   updateMovieMutation,
-} from '../../graphql/mutations';
+} from '../../../graphql/mutations';
 
 const withGraphQL = compose(
   graphql(addMovieMutation, {

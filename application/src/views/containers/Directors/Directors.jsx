@@ -5,7 +5,7 @@ import {
   directorsInitState,
   directorsFormElementsList,
   directorsTableHeadList,
-} from '../../constants/directors';
+} from '../../../constants/directors';
 import NavigationTable from '../../components/NavigationTable/NavigationTable';
 import withHocs from './DirectorsHoc';
 

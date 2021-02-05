@@ -4,8 +4,8 @@ import { ApolloProvider } from 'react-apollo';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
 import env from './constants/environment';
-import theme from './components/theme';
-import Tabs from './components/Tabs/Tabs';
+import theme from './views/components/theme';
+import Tabs from './views/components/Tabs/Tabs';
 
 const { serverUrl, serverPort, graphqlRequest } = env;
 

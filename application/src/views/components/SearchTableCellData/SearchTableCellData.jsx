@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import { isBoolean, isObjectOrNull } from '../../utils/utils';
+import { isBoolean, isObjectOrNull } from '../../../utils/utils';
 
 const SearchTableCellData = ({ cellData }) => {
   if (isBoolean(cellData)) return <Checkbox checked={cellData} disabled />;
