@@ -6,6 +6,8 @@ const { graphqlHTTP } = require('express-graphql');
 const { connect: mongooseConnect, connection: dbConnection } = require('mongoose');
 
 const {
+  dbProtocol,
+  dbDomain,
   retryWritesParam,
   retryWritesValue,
   writeParam,
@@ -24,7 +26,7 @@ const PORT = SERVER_PORT || 3005;
 
 /* eslint-disable no-console, max-len */
 mongooseConnect(
-  `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_CLUSTER}.mongodb.net/${DB_NAME}?${retryWritesParam}${retryWritesValue}&${writeParam}${writeValue}`,
+  `${dbProtocol}://${DB_USER}:${DB_PASS}@${DB_CLUSTER}.${dbDomain}/${DB_NAME}?${retryWritesParam}${retryWritesValue}&${writeParam}${writeValue}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
