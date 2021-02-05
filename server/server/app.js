@@ -24,15 +24,15 @@ const { SERVER_PORT, DB_NAME, DB_USER, DB_PASS, DB_CLUSTER, GRAPHQL_REQUEST } = 
 const app = express();
 const PORT = SERVER_PORT || 3005;
 
-/* eslint-disable no-console, max-len */
-mongooseConnect(
-  `${dbProtocol}://${DB_USER}:${DB_PASS}@${DB_CLUSTER}.${dbDomain}/${DB_NAME}?${retryWritesParam}${retryWritesValue}&${writeParam}${writeValue}`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  },
-);
+const BASE_PATH = `${dbProtocol}://${DB_USER}:${DB_PASS}@${DB_CLUSTER}.${dbDomain}/${DB_NAME}`;
+const PARAMS = `${retryWritesParam}${retryWritesValue}&${writeParam}${writeValue}`;
+
+/* eslint-disable no-console */
+mongooseConnect(`${BASE_PATH}?${PARAMS}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
 
 app.use(cors());
 
