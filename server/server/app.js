@@ -5,30 +5,20 @@ const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const { connect: mongooseConnect, connection: dbConnection } = require('mongoose');
 
-const {
-  dbProtocol,
-  dbDomain,
-  retryWritesParam,
-  retryWritesValue,
-  writeParam,
-  writeValue,
-} = require('../constants/dbPaths');
+const dbConnectionUri = require('../constants/dbConnectionUri');
 const schema = require('../schema/schema');
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 });
 
-const { SERVER_PORT, DB_NAME, DB_USER, DB_PASS, DB_CLUSTER, GRAPHQL_REQUEST } = process.env;
+const { SERVER_PORT, GRAPHQL_REQUEST } = process.env;
 
 const app = express();
 const PORT = SERVER_PORT || 3005;
 
-const BASE_PATH = `${dbProtocol}://${DB_USER}:${DB_PASS}@${DB_CLUSTER}.${dbDomain}/${DB_NAME}`;
-const PARAMS = `${retryWritesParam}${retryWritesValue}&${writeParam}${writeValue}`;
-
 /* eslint-disable no-console */
-mongooseConnect(`${BASE_PATH}?${PARAMS}`, {
+mongooseConnect(dbConnectionUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
