@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { getFormProps } from '../../../utils/getDataByCollection';
 import SearchTable from '../SearchTable/SearchTable';
 import Form from '../Form/Form';
 import AddFab from '../AddFab/AddFab';
@@ -46,19 +47,13 @@ class NavigationTable extends Component {
       searchTableProps,
     } = this.props;
 
-    const selectedValue = isMovies
-      ? { ...state, watched: !!state.watched, rate: +state.rate }
-      : { ...state, age: +state.age };
-    const formElementsListParams = isMovies
-      ? [
-          state.name,
-          state.genre,
-          state.rate,
-          { directorId: state.directorId, directors: formElementSelectOptions },
-        ]
-      : [state.name, state.age];
-    const formElementsList = getFormElementsList(...formElementsListParams);
-    const formCheckbox = isMovies ? getFormCheckbox?.(state.watched) : null;
+    const { selectedValue, formElementsList, formCheckbox } = getFormProps(
+      isMovies,
+      state,
+      getFormElementsList,
+      formElementSelectOptions,
+      getFormCheckbox,
+    );
 
     return (
       <>

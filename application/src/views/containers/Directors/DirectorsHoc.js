@@ -1,7 +1,7 @@
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 
-import { mutationInstance, queryInstance } from '../../../utils/utils';
+import { mutationInstance, queryInstance } from '../../../utils/graphql';
 import { directorsWithMoviesQuery } from '../../../graphql/queries';
 import {
   addDirectorMutation,
