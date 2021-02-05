@@ -3,14 +3,12 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
-import env from './constants/environment';
+import apolloClientUri from './constants/apolloClientUri';
 import theme from './views/components/theme';
 import Tabs from './views/components/Tabs/Tabs';
 
-const { serverUrl, serverPort, graphqlRequest } = env;
-
 const client = new ApolloClient({
-  uri: `${serverUrl}:${serverPort}/${graphqlRequest}`,
+  uri: apolloClientUri,
 });
 
 const App = () => (
