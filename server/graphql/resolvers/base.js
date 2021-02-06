@@ -16,7 +16,7 @@ const updateResolver = Model => (_, { id, ...resolveArgs }) =>
     },
   );
 
-const findResolver = Model => (_, { name }) =>
+const searchByNameResolver = Model => (_, { name }) =>
   Model.find({
     name: {
       $regex: name,
@@ -30,6 +30,6 @@ module.exports = {
   addResolver,
   deleteResolver,
   updateResolver,
-  findResolver,
+  searchByNameResolver,
   findByIdResolver,
 };

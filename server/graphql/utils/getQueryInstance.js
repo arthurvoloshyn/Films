@@ -1,13 +1,13 @@
 const { GraphQLList } = require('graphql');
 
-const schemaFields = require('../constants/schemaFields');
-const { findResolver, findByIdResolver } = require('../resolvers');
+const schemaFields = require('../fields/schemaFields');
+const { searchByNameResolver, findByIdResolver } = require('../resolvers');
 
 const getQueryInstance = {
   collection: (Schema, Model) => ({
     type: new GraphQLList(Schema),
     args: schemaFields.fieldName,
-    resolve: findResolver(Model),
+    resolve: searchByNameResolver(Model),
   }),
   element: (Schema, Model) => ({
     type: Schema,

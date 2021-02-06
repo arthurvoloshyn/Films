@@ -1,4 +1,4 @@
-const schemaFields = require('../constants/schemaFields');
+const schemaFields = require('../fields/schemaFields');
 const { addResolver, deleteResolver, updateResolver } = require('../resolvers');
 
 const getMutationInstance = {

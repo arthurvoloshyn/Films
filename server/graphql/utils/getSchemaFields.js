@@ -1,4 +1,4 @@
-const schemaFields = require('../constants/schemaFields');
+const schemaFields = require('../fields/schemaFields');
 
 const getSchemaFields = (fields, { withId, withDirectorId } = {}) => {
   const fieldsOptionsWithId = withId && { ...schemaFields.fieldId };

@@ -4,6 +4,6 @@ const baseResolvers = require('./base');
 
 module.exports = {
   ...baseResolvers,
-  movieResolver,
-  directorResolver,
+  ...movieResolver,
+  ...directorResolver,
 };

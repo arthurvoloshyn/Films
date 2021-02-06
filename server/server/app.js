@@ -5,12 +5,11 @@ const { connect: mongooseConnect, connection: dbConnection } = require('mongoose
 
 const { serverPort, graphqlRequest } = require('../constants/environment');
 const dbConnectionUri = require('../constants/dbConnectionUri');
-const schema = require('../schema/schema');
+const schema = require('../graphql/schema/schema');
 
 const app = express();
 const PORT = serverPort || 3005;
 
-/* eslint-disable no-console */
 mongooseConnect(dbConnectionUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -27,6 +26,7 @@ app.use(
   }),
 );
 
+/* eslint-disable no-console */
 dbConnection.on('error', err => console.log(`Connection error: ${err}`));
 dbConnection.once('open', () => console.log('Connected to DB!'));
 

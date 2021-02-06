@@ -1,9 +1,9 @@
 const { GraphQLObjectType, GraphQLSchema, GraphQLList } = require('graphql');
 
-const schemaFields = require('../constants/schemaFields');
+const schemaFields = require('../fields/schemaFields');
 const Movies = require('../models/movie');
 const Directors = require('../models/director');
-const { movieResolver, directorResolver } = require('../resolvers');
+const { getDirectorByIdResolver, getMoviesByDirectorIdResolver } = require('../resolvers');
 const getSchemaFields = require('../utils/getSchemaFields');
 const getQueryInstance = require('../utils/getQueryInstance');
 const getMutationInstance = require('../utils/getMutationInstance');
@@ -15,7 +15,7 @@ const MovieType = new GraphQLObjectType({
     ...getSchemaFields(schemaFields.movie, { withId: true }),
     director: {
       type: DirectorType,
-      resolve: movieResolver,
+      resolve: getDirectorByIdResolver,
     },
   }),
 });
@@ -26,7 +26,7 @@ const DirectorType = new GraphQLObjectType({
     ...getSchemaFields(schemaFields.director, { withId: true }),
     movies: {
       type: new GraphQLList(MovieType),
-      resolve: directorResolver,
+      resolve: getMoviesByDirectorIdResolver,
     },
   }),
 });
