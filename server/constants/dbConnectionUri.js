@@ -1,3 +1,4 @@
+const { dbName, dbUser, dbPass, dbCluster } = require('./environment');
 const {
   dbProtocol,
   dbDomain,
@@ -7,9 +8,7 @@ const {
   writeValue,
 } = require('../constants/dbPaths');
 
-const { DB_NAME, DB_USER, DB_PASS, DB_CLUSTER } = process.env;
-
-const BASE_PATH = `${dbProtocol}://${DB_USER}:${DB_PASS}@${DB_CLUSTER}.${dbDomain}/${DB_NAME}`;
+const BASE_PATH = `${dbProtocol}://${dbUser}:${dbPass}@${dbCluster}.${dbDomain}/${dbName}`;
 const PARAMS = `${retryWritesParam}${retryWritesValue}&${writeParam}${writeValue}`;
 
 const dbConnectionUri = `${BASE_PATH}?${PARAMS}`;

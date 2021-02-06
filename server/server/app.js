@@ -1,21 +1,14 @@
 const express = require('express');
-const path = require('path');
-const dotenv = require('dotenv');
 const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const { connect: mongooseConnect, connection: dbConnection } = require('mongoose');
 
+const { serverPort, graphqlRequest } = require('../constants/environment');
 const dbConnectionUri = require('../constants/dbConnectionUri');
 const schema = require('../schema/schema');
 
-dotenv.config({
-  path: path.resolve(__dirname, '../.env'),
-});
-
-const { SERVER_PORT, GRAPHQL_REQUEST } = process.env;
-
 const app = express();
-const PORT = SERVER_PORT || 3005;
+const PORT = serverPort || 3005;
 
 /* eslint-disable no-console */
 mongooseConnect(dbConnectionUri, {
@@ -27,7 +20,7 @@ mongooseConnect(dbConnectionUri, {
 app.use(cors());
 
 app.use(
-  `/${GRAPHQL_REQUEST}`,
+  `/${graphqlRequest}`,
   graphqlHTTP({
     schema,
     graphiql: true,
