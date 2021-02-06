@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { getFormProps } from '../../../utils/getDataByCollection';
+import { getFormProps } from '../../../utils/getCollectionData';
 import SearchTable from '../SearchTable/SearchTable';
 import Form from '../Form/Form';
 import AddFab from '../AddFab/AddFab';

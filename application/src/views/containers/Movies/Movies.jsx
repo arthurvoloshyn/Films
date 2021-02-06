@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  moviesInitState,
-  moviesFormElementsList,
-  moviesFormCheckbox,
-  moviesTableHeadList,
-} from '../../../constants/movies';
+import { moviesInitState, moviesTableHeadList } from '../../../constants/movies';
+import { getMoviesFormElementsList, getMoviesFormCheckbox } from '../../../utils/getCollectionData';
 import NavigationTable from '../../components/NavigationTable/NavigationTable';
 import withHocs from './MoviesHoc';
 
@@ -20,8 +16,8 @@ const Movies = ({
   const formProps = {
     handleAdd: addMovie,
     handleUpdate: updateMovie,
-    getFormElementsList: moviesFormElementsList,
-    getFormCheckbox: moviesFormCheckbox,
+    getFormElementsList: getMoviesFormElementsList,
+    getFormCheckbox: getMoviesFormCheckbox,
     formElementSelectOptions: directors,
     title: 'Movie information',
   };

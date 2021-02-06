@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  directorsInitState,
-  directorsFormElementsList,
-  directorsTableHeadList,
-} from '../../../constants/directors';
+import { directorsInitState, directorsTableHeadList } from '../../../constants/directors';
+import { getDirectorsFormElementsList } from '../../../utils/getCollectionData';
 import NavigationTable from '../../components/NavigationTable/NavigationTable';
 import withHocs from './DirectorsHoc';
 
@@ -18,7 +15,7 @@ const Directors = ({
   const formProps = {
     handleAdd: addDirector,
     handleUpdate: updateDirector,
-    getFormElementsList: directorsFormElementsList,
+    getFormElementsList: getDirectorsFormElementsList,
     title: 'Movie information',
   };
 
