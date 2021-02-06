@@ -3,7 +3,7 @@ const addResolver = Model => (_, { id, ...resolveArgs }) => {
   return newModel.save();
 };
 
-const deleteResolver = Model => (_, { id }) => Model.findByIdAndRemove(id);
+const deleteByIdResolver = Model => (_, { id }) => Model.findByIdAndRemove(id);
 
 const updateResolver = Model => (_, { id, ...resolveArgs }) =>
   Model.findByIdAndUpdate(
@@ -28,7 +28,7 @@ const findByIdResolver = Model => (_, { id }) => Model.findById(id);
 
 module.exports = {
   addResolver,
-  deleteResolver,
+  deleteByIdResolver,
   updateResolver,
   searchByNameResolver,
   findByIdResolver,
