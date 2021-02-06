@@ -47,7 +47,6 @@ Movies.propTypes = {
         name: PropTypes.string,
       }),
     ),
-    fetchMore: PropTypes.func,
   }).isRequired,
   moviesQuery: PropTypes.shape({
     movies: PropTypes.arrayOf(
@@ -58,6 +57,7 @@ Movies.propTypes = {
         rate: PropTypes.number,
         watched: PropTypes.bool,
         director: PropTypes.shape({
+          id: PropTypes.string,
           name: PropTypes.string,
         }),
       }),

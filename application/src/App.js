@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
 import apolloClientUri from './constants/apolloClientUri';
-import theme from './views/components/theme';
+import theme from './theme/theme';
 import Tabs from './views/components/Tabs/Tabs';
 
 const client = new ApolloClient({

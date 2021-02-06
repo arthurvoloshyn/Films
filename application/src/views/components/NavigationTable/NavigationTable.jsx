@@ -88,8 +88,27 @@ NavigationTable.propTypes = {
       }),
     ),
   }),
-  searchTableProps: PropTypes.shape({}),
-  initState: PropTypes.shape({}),
+  searchTableProps: PropTypes.shape({
+    fetchMore: PropTypes.func,
+    handleDelete: PropTypes.func,
+    tableHeadList: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        align: PropTypes.string,
+      }),
+    ),
+    tableBodyList: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+      }),
+    ),
+  }),
+  initState: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    open: PropTypes.string,
+  }),
 };
 
 NavigationTable.defaultProps = {

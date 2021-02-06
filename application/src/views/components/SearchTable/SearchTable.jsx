@@ -107,12 +107,12 @@ class SearchTable extends Component {
                     <TableCell component="th" scope="row">
                       {name}
                     </TableCell>
-                    {tableBodyElPropsValues.map(tableBodyElPropValue => (
+                    {tableBodyElPropsValues.map((tableBodyElPropValue, i) => (
                       <TableCell
                         key={
                           isString(tableBodyElPropValue)
                             ? tableBodyElPropValue
-                            : `tableBodyCell_${tableBodyElPropValue}`
+                            : `tableBodyCell_${i}`
                         }
                         align={isNumber(tableBodyElPropValue) ? 'right' : 'left'}
                       >

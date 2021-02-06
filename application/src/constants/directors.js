@@ -2,7 +2,7 @@ export const directorsTableHeadList = [
   { title: 'Name' },
   { title: 'Age', align: 'right' },
   { title: 'Movies' },
-  { align: 'left' },
+  { align: 'right' },
 ];
 
 export const directorsInitState = {
