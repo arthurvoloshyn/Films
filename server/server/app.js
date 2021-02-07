@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const { connect: mongooseConnect, connection: dbConnection } = require('mongoose');
@@ -9,6 +10,8 @@ const schema = require('../graphql/schema/schema');
 
 const app = express();
 const PORT = serverPort || 3005;
+
+const applicationBuildPath = '../../application/build';
 
 mongooseConnect(dbConnectionUri, {
   useNewUrlParser: true,
@@ -24,6 +27,12 @@ app.use(
     schema,
     graphiql: true,
   }),
+);
+
+app.use(express.static(path.resolve(__dirname, applicationBuildPath)));
+
+app.get('*', (_, res) =>
+  res.sendFile(path.resolve(__dirname, `${applicationBuildPath}/index.html`)),
 );
 
 /* eslint-disable no-console */
