@@ -95,6 +95,10 @@ Open the web browser to `http://localhost:3000/`
 
 ### To build the production package
 
+- Replace the NODE_ENV value with the production value in the .env file in the server directory
+
+- Then run the build:
+
 `npm run build`
 
 ### Code Quality
