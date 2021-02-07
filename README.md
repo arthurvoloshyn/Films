@@ -93,6 +93,10 @@ To run tests using Jest and React Testing Library:
 
 Open the web browser to `http://localhost:3000/`
 
+### To build the production package
+
+`npm run build`
+
 ### Code Quality
 
 - eslint 7.x
