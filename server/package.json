@@ -1,7 +1,7 @@
 {
   "name": "films",
   "version": "1.0.0",
-  "description": "server",
+  "description": "",
   "main": "server/app.js",
   "scripts": {
     "dev": "nodemon server/app.js",
