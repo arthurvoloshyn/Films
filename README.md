@@ -2,6 +2,8 @@
 
 Simple React Films Application
 
+[Demo](https://films-database.herokuapp.com/)
+
 ## To clone
 
 - You'll need to have [git](https://git-scm.com/), [node](https://nodejs.org/en/) installed in your
