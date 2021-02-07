@@ -1,7 +1,7 @@
 import env from './environment';
 
-const { serverUrl, serverPort, graphqlRequest } = env;
+const { serverHost, graphqlRequest } = env;
 
-const apolloClientUri = `${serverUrl}:${serverPort}/${graphqlRequest}`;
+const apolloClientUri = `${serverHost}/${graphqlRequest}`;
 
 export default apolloClientUri;
