@@ -4,7 +4,7 @@ const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const { connect: mongooseConnect, connection: dbConnection } = require('mongoose');
 
-const { serverPort, graphqlRequest } = require('../constants/environment');
+const { serverPort, graphqlRequest, isProd } = require('../constants/environment');
 const dbConnectionUri = require('../constants/dbConnectionUri');
 const schema = require('../graphql/schema/schema');
 
@@ -29,11 +29,13 @@ app.use(
   }),
 );
 
-app.use(express.static(path.resolve(__dirname, applicationBuildPath)));
+if (isProd) {
+  app.use(express.static(path.resolve(__dirname, applicationBuildPath)));
 
-app.get('*', (_, res) =>
-  res.sendFile(path.resolve(__dirname, `${applicationBuildPath}/index.html`)),
-);
+  app.get('*', (_, res) =>
+    res.sendFile(path.resolve(__dirname, `${applicationBuildPath}/index.html`)),
+  );
+}
 
 /* eslint-disable no-console */
 dbConnection.on('error', err => console.log(`Connection error: ${err}`));
