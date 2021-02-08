@@ -107,7 +107,7 @@ NavigationTable.propTypes = {
   initState: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
-    open: PropTypes.string,
+    open: PropTypes.bool,
   }),
 };
 

@@ -37,6 +37,12 @@ Simple React Films Application
 
 Open the web browser to `http://localhost:3005/graphql`
 
+### To build the production package
+
+- pm2 4.x
+
+`npm run prod` in the server directory
+
 ## Front-end
 
 ### Provides

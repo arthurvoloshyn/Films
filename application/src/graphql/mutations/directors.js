@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 export const addDirectorMutation = gql`
-  mutation addDirector($name: String!, $age: Int!) {
+  mutation addDirector($name: String!, $age: Float!) {
     addDirector(name: $name, age: $age) {
       name
     }
@@ -9,7 +9,7 @@ export const addDirectorMutation = gql`
 `;
 
 export const updateDirectorMutation = gql`
-  mutation updateDirector($id: ID, $name: String!, $age: Int!) {
+  mutation updateDirector($id: ID, $name: String!, $age: Float!) {
     updateDirector(id: $id, name: $name, age: $age) {
       name
     }

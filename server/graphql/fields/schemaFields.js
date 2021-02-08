@@ -1,4 +1,10 @@
-const { GraphQLString, GraphQLInt, GraphQLBoolean, GraphQLID, GraphQLNonNull } = require('graphql');
+const {
+  GraphQLString,
+  GraphQLFloat,
+  GraphQLBoolean,
+  GraphQLID,
+  GraphQLNonNull,
+} = require('graphql');
 
 const schemaFields = {
   movie: {
@@ -12,7 +18,7 @@ const schemaFields = {
       type: new GraphQLNonNull(GraphQLBoolean),
     },
     rate: {
-      type: GraphQLInt,
+      type: GraphQLFloat,
     },
   },
   director: {
@@ -20,7 +26,7 @@ const schemaFields = {
       type: new GraphQLNonNull(GraphQLString),
     },
     age: {
-      type: new GraphQLNonNull(GraphQLInt),
+      type: new GraphQLNonNull(GraphQLFloat),
     },
   },
   fieldId: {

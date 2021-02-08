@@ -6,12 +6,11 @@ const { connect: mongooseConnect, connection: dbConnection } = require('mongoose
 
 const { serverPort, graphqlRequest, isProd } = require('../constants/environment');
 const dbConnectionUri = require('../constants/dbConnectionUri');
+const paths = require('../constants/paths');
 const schema = require('../graphql/schema/schema');
 
 const app = express();
 const PORT = serverPort || 3005;
-
-const applicationBuildPath = '../../application/build';
 
 mongooseConnect(dbConnectionUri, {
   useNewUrlParser: true,
@@ -30,10 +29,10 @@ app.use(
 );
 
 if (isProd) {
-  app.use(express.static(path.resolve(__dirname, applicationBuildPath)));
+  app.use(express.static(path.resolve(__dirname, paths.applicationBuild)));
 
   app.get('*', (_, res) =>
-    res.sendFile(path.resolve(__dirname, `${applicationBuildPath}/index.html`)),
+    res.sendFile(path.resolve(__dirname, `${paths.applicationBuild}/index.html`)),
   );
 }
 

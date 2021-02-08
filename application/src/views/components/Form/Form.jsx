@@ -35,7 +35,7 @@ const Form = ({
     onClose();
   };
 
-  const wrapperClasses = classNames(classes.wrapper, { formCheckbox: classes.fluidWrapper });
+  const wrapperClasses = classNames(classes.wrapper, { [classes.fluidWrapper]: !formCheckbox });
 
   return (
     <Dialog aria-labelledby="simple-dialog-title" onClose={onClose} open={open}>
