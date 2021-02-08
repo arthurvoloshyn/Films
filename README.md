@@ -41,7 +41,7 @@ Open the web browser to `http://localhost:3005/graphql`
 
 - pm2 4.x
 
-`npm run prod` in the server directory
+`npm run server:prod`
 
 ## Front-end
 
@@ -70,7 +70,7 @@ Open the web browser to `http://localhost:3000/`
 - webpack 4.x
 - babel 7.x
 
-`npm run build` in the client directory
+`npm run client:build`
 
 ### Unit Testing
 
