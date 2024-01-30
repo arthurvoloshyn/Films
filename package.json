@@ -1,5 +1,5 @@
 {
-  "homepage": "https://films-database.herokuapp.com",
+  "homepage": "https://films-db.vercel.app",
   "name": "films",
   "version": "1.0.0",
   "private": true,
