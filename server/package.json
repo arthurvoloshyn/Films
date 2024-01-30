@@ -5,7 +5,9 @@
   "main": "server/app.js",
   "scripts": {
     "dev": "nodemon server/app.js",
-    "prod": "pm2 start --no-daemon server/app.js --node-args=\"--max_old_space_size=8192\""
+    "prod": "pm2 start --no-daemon server/app.js --node-args=\"--max_old_space_size=8192\"",
+    "deploy:dev": "vercel",
+    "deploy:prod": "vercel --prod"
   },
   "author": "",
   "license": "MIT",
@@ -19,5 +21,8 @@
     "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "pm2": "^4.5.4"
+  },
+  "devDependencies": {
+    "vercel": "^33.4.0"
   }
 }

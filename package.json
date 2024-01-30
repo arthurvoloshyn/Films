@@ -26,6 +26,8 @@
     "client:build": "npm run build --prefix application",
     "server": "npm run dev --prefix server",
     "server:prod": "npm run prod --prefix server",
+    "server:deploy:dev": "npm run deploy:dev --prefix server",
+    "server:deploy:prod": "npm run deploy:prod --prefix server",
     "install": "concurrently \"npm run client-install\" \"npm run server-install\"",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "concurrently \"npm run server:prod\" \"npm run client:build\"",
